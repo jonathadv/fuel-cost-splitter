@@ -28,7 +28,7 @@ class CalcInput extends Component {
       return (
         <CurrencyInput
           value={this.props.value}
-            inputType='tel'
+          inputType="tel"
           onChangeEvent={this.updateValue}
         />
       );
@@ -44,7 +44,7 @@ class CalcInput extends Component {
 
     return (
       <div className="CalcInput">
-        {name + unit + ':'}
+        {name + unit}
         {this.generateInput(type)}
       </div>
     );

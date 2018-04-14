@@ -44,61 +44,63 @@ class App extends Component {
         result,
         pricePerPerson,
       });
+
+      window.scrollTo(0, document.body.scrollHeight);
     };
   }
 
   render() {
-    console.log(
-      `( ${this.state.pathLength} / ${this.state.gasConsumption} ) x ${
-        this.state.gasPrice
-      } = ${this.state.result}`
-    );
-
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Fuel Cost Splitter</h1>
         </header>
-        <p className="App-intro">Preencha os campos</p>
-        <CalcInput
-          name="Trajeto Ida e Volta"
-          unit="Km"
-          type="step"
-          step="0.01"
-          cb={this.updateCarPath}
-        />
-        <CalcInput
-          name="Consumo do veículo"
-          unit="Km/L"
-          type="step"
-          cb={this.updateGasConsumption}
-        />
-        <CalcInput
-          name="Preço médio da gasolina"
-          unit="R$"
-          type="currency"
-          value={this.state.gasPrice}
-          cb={this.updateGasPrice}
-        />
-        <CalcInput
-          name="Participantes"
-          type="step"
-          cb={this.updateParticipants}
-        />
-        <p>
-          <input className="button" type="button" value="Calcular" onClick={this.updateResult} />
-        </p>
-        <p className="Cost">
-          Valor total:
-          <span className="Cost"> R$ {this.state.result} </span>
-        </p>
-        ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
-        {this.state.gasPrice}
-        <p className="Cost">
-          Por pessoa:
-          <span className="Cost"> R$ {this.state.pricePerPerson} </span>
-        </p>
-        {this.state.result} / {this.state.participants}
+        <div className="AppBody">
+          <CalcInput
+            name="Distância Total"
+            unit="Km"
+            type="step"
+            step="0.01"
+            cb={this.updateCarPath}
+          />
+          <CalcInput
+            name="Consumo do veículo"
+            unit="Km/L"
+            type="step"
+            cb={this.updateGasConsumption}
+          />
+          <CalcInput
+            name="Preço da gasolina"
+            unit="R$"
+            type="currency"
+            value={this.state.gasPrice}
+            cb={this.updateGasPrice}
+          />
+          <CalcInput
+            name="Quantidade de Participantes"
+            type="step"
+            cb={this.updateParticipants}
+          />
+          <p>
+            <input
+              className="button"
+              type="button"
+              value="Calcular"
+              onClick={this.updateResult}
+            />
+          </p>
+          <p className="Cost">
+            Valor total:
+            <span className="Cost"> R$ {this.state.result} </span>
+          </p>
+          ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
+          {this.state.gasPrice}
+          <p className="Cost">
+            Por pessoa:
+            <span className="Cost"> R$ {this.state.pricePerPerson} </span>
+          </p>
+          {this.state.result} / {this.state.participants}
+        </div>
       </div>
     );
   }

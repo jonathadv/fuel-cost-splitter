@@ -2,19 +2,20 @@ body {
   font-size: 1.5em;
 }
 
+
 .App {
   text-align: center;
 }
 
 .App-header {
   background-color: #222;
-  height: 100px;
+  height: 150px;
   padding: 20px;
   color: white;
 }
 
 .App-title {
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 .Cost {
@@ -25,16 +26,17 @@ body {
   font-size: 1.5em;
 }
 
+.CalcInput {
+  padding: 10px;
+}
+
 input {
+    text-align: center;
     display: inline-block;
     position: relative;
     font-size: 1.5em;
     margin: 5px;
-    width: 150px;
-}.
-
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    width: 200px;
 }
+
+
