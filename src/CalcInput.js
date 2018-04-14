@@ -24,10 +24,11 @@ class CalcInput extends Component {
       );
     }
 
-    if (type == 'currency') {
+    if (type === 'currency') {
       return (
         <CurrencyInput
           value={this.props.value}
+            inputType='tel'
           onChangeEvent={this.updateValue}
         />
       );

@@ -1,10 +1,9 @@
-.App {
-  text-align: center;
+body {
+  font-size: 1.5em;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App {
+  text-align: center;
 }
 
 .App-header {
@@ -23,12 +22,16 @@
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 1.5em;
 }
 
-.CalcInput {
-  padding:2px;
+input {
+    display: inline-block;
+    position: relative;
+    font-size: 1.5em;
+    margin: 5px;
 }.
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

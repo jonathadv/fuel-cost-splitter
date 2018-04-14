@@ -86,7 +86,7 @@ class App extends Component {
           cb={this.updateParticipants}
         />
         <p>
-          <input type="button" value="Calcular" onClick={this.updateResult} />
+          <input className="button" type="button" value="Calcular" onClick={this.updateResult} />
         </p>
         <p className="Cost">
           Valor total:
