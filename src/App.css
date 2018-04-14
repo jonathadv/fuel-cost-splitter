@@ -18,8 +18,26 @@ body {
   font-size: 2em;
 }
 
+.CostBox {
+  padding: 10px;
+}
+
+.CostTitle {
+  font-size: 1.5em;
+  padding: 1px;
+}
+
 .Cost {
   font-size: 1.5em;
+  padding: 1px;
+  color: red;
+  font-weight: bold;
+}
+
+.Calc {
+  font-family: monospace;
+  padding: 1px;
+  color: gray;
 }
 
 .App-intro {

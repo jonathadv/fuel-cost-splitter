@@ -89,18 +89,19 @@ class App extends Component {
               onClick={this.updateResult}
             />
           </p>
-          <p className="Cost">
-            Valor total:
-            <span className="Cost"> R$ {this.state.result} </span>
-          </p>
-          ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
-          {this.state.gasPrice}
-          <p className="Cost">
-            Por pessoa:
-            <span className="Cost"> R$ {this.state.pricePerPerson} </span>
-          </p>
-          {this.state.result} / {this.state.participants}
-        </div>
+          
+          <div className="CostBox">
+              <div className="CostTitle">Valor total</div>
+              <div className="Cost">R$ {this.state.result}</div>        
+              <div className="Calc">( {this.state.pathLength} / {this.state.gasConsumption} ) x {this.state.gasPrice} </div>
+          </div>
+          
+          <div className="CostBox">
+              <div className="CostTitle">Por pessoa</div>
+              <div className="Cost">R$ {this.state.pricePerPerson}</div>
+              <div className="Calc">{this.state.result} / {this.state.participants}</div>
+         </div>
+         </div>
       </div>
     );
   }
