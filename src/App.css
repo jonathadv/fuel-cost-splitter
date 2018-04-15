@@ -48,6 +48,25 @@ body {
   padding: 10px;
 }
 
+.AddressBox {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    font-size: 1.0em;
+    margin: 5px;
+    width: 350px;
+}
+
+.AddressBoxButton {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    font-size: 1em;
+    margin: 5px;
+    width: 50px;
+}
+
+
 input {
     text-align: center;
     display: inline-block;

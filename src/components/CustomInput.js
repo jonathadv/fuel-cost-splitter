@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CurrencyInput from 'react-currency-input';
 
-class CalcInput extends Component {
+class CustomInput extends Component {
   updateValue = e => {
     this.props.cb(e.nativeEvent.target.value);
   };
@@ -15,7 +15,7 @@ class CalcInput extends Component {
       return (
         <input
           placeholder="0"
-          type="number"
+          type=""
           min={min}
           max={max}
           step={step}
@@ -34,11 +34,11 @@ class CalcInput extends Component {
       );
     }
 
-    return <input placeholder="0" type={type} onChange={this.updateValue} />;
+    return <input placeholder="" type={type} onChange={this.updateValue} />;
   };
 
   render() {
-    const name = this.props.name ? this.props.name : 'Unamed';
+    const name = this.props.name ? this.props.name : '';
     const unit = this.props.unit ? ' (' + this.props.unit + ')' : '';
     const type = this.props.type ? this.props.type : 'text';
 
@@ -51,4 +51,4 @@ class CalcInput extends Component {
   }
 }
 
-export default CalcInput;
+export default CustomInput;

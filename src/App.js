@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CalcInput from './CalcInput.js';
+import CustomInput from './components/CustomInput.js';
+import AddressBox from './components/AddressBox.js';
 import './App.css';
 
 class App extends Component {
@@ -56,27 +57,29 @@ class App extends Component {
           <h1 className="App-title">Fuel Cost Splitter</h1>
         </header>
         <div className="AppBody">
-          <CalcInput
+          <AddressBox />
+
+          <CustomInput
             name="Distância Total"
             unit="Km"
             type="step"
             step="0.01"
             cb={this.updateCarPath}
           />
-          <CalcInput
+          <CustomInput
             name="Consumo do veículo"
             unit="Km/L"
             type="step"
             cb={this.updateGasConsumption}
           />
-          <CalcInput
+          <CustomInput
             name="Preço da gasolina"
             unit="R$"
             type="currency"
             value={this.state.gasPrice}
             cb={this.updateGasPrice}
           />
-          <CalcInput
+          <CustomInput
             name="Quantidade de Participantes"
             type="step"
             cb={this.updateParticipants}
@@ -89,19 +92,24 @@ class App extends Component {
               onClick={this.updateResult}
             />
           </p>
-          
+
           <div className="CostBox">
-              <div className="CostTitle">Valor total</div>
-              <div className="Cost">R$ {this.state.result}</div>        
-              <div className="Calc">( {this.state.pathLength} / {this.state.gasConsumption} ) x {this.state.gasPrice} </div>
+            <div className="CostTitle">Valor total</div>
+            <div className="Cost">R$ {this.state.result}</div>
+            <div className="Calc">
+              ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
+              {this.state.gasPrice}{' '}
+            </div>
           </div>
-          
+
           <div className="CostBox">
-              <div className="CostTitle">Por pessoa</div>
-              <div className="Cost">R$ {this.state.pricePerPerson}</div>
-              <div className="Calc">{this.state.result} / {this.state.participants}</div>
-         </div>
-         </div>
+            <div className="CostTitle">Por pessoa</div>
+            <div className="Cost">R$ {this.state.pricePerPerson}</div>
+            <div className="Calc">
+              {this.state.result} / {this.state.participants}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
