@@ -4,13 +4,14 @@
 
 
 ### Local environment
-``bash
+
+```bash
 REACT_APP_API_KEY=<google_maps_api_key> npm start
 
 ```
 
 ### Build
-``bash
+```bash
 REACT_APP_API_KEY=<google_maps_api_key> PUBLIC_URL=<url> npm run build
 
 ```
