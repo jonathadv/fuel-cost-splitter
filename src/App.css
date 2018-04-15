@@ -50,7 +50,6 @@ body {
 
 .AddressBox {
     text-align: center;
-    display: inline-block;
     position: relative;
     font-size: 1.0em;
     margin: 5px;
@@ -66,6 +65,26 @@ body {
     width: 50px;
 }
 
+.MapSearchBox {
+    text-align: center;
+    text-align: center;
+    position: relative;  
+ }
+
+.MapWrapper {
+    display: block;
+    height: 200px;
+}
+
+.CalcDistanceButton {
+    width: 300px;
+    font-size: 1em;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
 
 input {
     text-align: center;

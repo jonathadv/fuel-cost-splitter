@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import CurrencyInput from 'react-currency-input';
-import CustomInput from './CustomInput.js';
 
 class AddressBox extends Component {
   constructor(props) {
@@ -10,12 +8,10 @@ class AddressBox extends Component {
   }
 
   getDefaultState() {
-    return {
-      addressList: [
-        { value: '', hash: Math.random() },
-        { value: '', hash: Math.random() },
-      ],
-    };
+    this.props.addressList.push({value: '', hash: Math.random()});
+    this.props.addressList.push({value: '', hash: Math.random()});
+
+    return { addressList: this.props.addressList }
   }
 
   addAddress(e) {
@@ -81,7 +77,7 @@ class AddressBox extends Component {
             id={index}
             onClick={this.removeAddress.bind(this)}
           >
-            X
+            -
           </button>
           <button
             className="AddressBoxButton"
@@ -96,8 +92,17 @@ class AddressBox extends Component {
     return tags;
   }
 
+
+  sendAddressList(){
+      this.props.cb(this.state.addressList);
+  }
+
   render() {
-    return <div className="box">{this.renderAddresses()}</div>;
+    return (
+      <div className="box">
+        {this.renderAddresses()}
+      </div>
+    );
   }
 }
 
