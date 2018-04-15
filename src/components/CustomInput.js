@@ -16,7 +16,7 @@ class CustomInput extends Component {
       return (
         <input
           placeholder="0"
-          type=""
+          type="number"
           min={min}
           max={max}
           step={step}
