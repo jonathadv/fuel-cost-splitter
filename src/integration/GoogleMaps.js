@@ -86,7 +86,7 @@ class GooggleMapsBox extends Component {
   render() {
     return (
       <div id="MapWrapper" className="MapWrapper">
-        <div id="map" />
+        <div className="map" id="map" />
       </div>
     );
   }

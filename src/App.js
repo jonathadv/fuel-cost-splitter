@@ -111,6 +111,19 @@ class App extends Component {
             </div>
           </div>
         </div>
+
+        <footer className="footer">
+          <p>
+            Fuel Cost Splitter - A simple webapp to split the fuel cost with
+            friends
+          </p>
+          <a
+            href="https://github.com/jonathadv/fuel-cost-splitter"
+            target="_blank"
+          >
+            About
+          </a>
+        </footer>
       </div>
     );
   }

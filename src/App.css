@@ -2,13 +2,16 @@ body {
   font-size: 1.5em;
 }
 
+a:link {
+    text-decoration: none;
+}
 
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #eae0d5;
   height: 150px;
   padding: 20px;
   color: white;
@@ -16,6 +19,7 @@ body {
 
 .App-title {
   font-size: 2em;
+  color:#22333b;
 }
 
 .CostBox {
@@ -81,7 +85,7 @@ body {
     font-size: 1em;
 }
 
-#map {
+.map {
     height: 100%;
     width: 100%;
 }
@@ -93,6 +97,19 @@ input {
     font-size: 1.5em;
     margin: 5px;
     width: 200px;
+}
+
+.footer {
+  width:100%;
+  padding:5px;
+  padding-bottom:5px;
+  background:#eae0d5;
+  color:#22333b;
+  font-weight:bold;
+  font-size:15px;
+  text-align:center;
+  bottom:0;          /*to the bottom of the body*/
+  left:0;            /*and to the left of the body.*/
 }
 
 

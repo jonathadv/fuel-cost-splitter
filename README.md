@@ -1,6 +1,6 @@
 # Fuel Cost Splitter
 
-> A simple webapp to split the cost fuel with friends
+> A simple webapp to split the fuel cost with friends
 
 
 ### Local environment
