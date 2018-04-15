@@ -113,16 +113,17 @@ class App extends Component {
         </div>
 
         <footer className="footer">
+          <p>Fuel Cost Splitter</p>
+          <p>A simple webapp to split the fuel cost with friends</p>
+
           <p>
-            Fuel Cost Splitter - A simple webapp to split the fuel cost with
-            friends
+            <a
+              href="https://github.com/jonathadv/fuel-cost-splitter"
+              target="_blank"
+            >
+              About
+            </a>
           </p>
-          <a
-            href="https://github.com/jonathadv/fuel-cost-splitter"
-            target="_blank"
-          >
-            About
-          </a>
         </footer>
       </div>
     );
