@@ -8,10 +8,10 @@ class AddressBox extends Component {
   }
 
   getDefaultState() {
-    this.props.addressList.push({value: '', hash: Math.random()});
-    this.props.addressList.push({value: '', hash: Math.random()});
+    this.props.addressList.push({ value: '', hash: Math.random() });
+    this.props.addressList.push({ value: '', hash: Math.random() });
 
-    return { addressList: this.props.addressList }
+    return { addressList: this.props.addressList };
   }
 
   addAddress(e) {
@@ -92,17 +92,12 @@ class AddressBox extends Component {
     return tags;
   }
 
-
-  sendAddressList(){
-      this.props.cb(this.state.addressList);
+  sendAddressList() {
+    this.props.cb(this.state.addressList);
   }
 
   render() {
-    return (
-      <div className="box">
-        {this.renderAddresses()}
-      </div>
-    );
+    return <div className="box">{this.renderAddresses()}</div>;
   }
 }
 

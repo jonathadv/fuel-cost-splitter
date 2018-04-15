@@ -52,62 +52,61 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <header id='header' className='App-header'>
-          <h1 className='App-title'>Fuel Cost Splitter</h1>
+      <div className="App">
+        <header id="header" className="App-header">
+          <h1 className="App-title">Fuel Cost Splitter</h1>
         </header>
 
-        <MapSearchBox cb={this.updateCarPath.bind(this)}/>
-        <div className='AppBody'>
-
+        <MapSearchBox cb={this.updateCarPath.bind(this)} />
+        <div className="AppBody">
           <CustomInput
-            name='Distância Total'
-            unit='Km'
-            type='step'
-            step='0.01'
+            name="Distância Total"
+            unit="Km"
+            type="step"
+            step="0.01"
             value={this.state.pathLength}
             cb={this.updateCarPath}
           />
           <CustomInput
-            name='Consumo do veículo'
-            unit='Km/L'
-            type='step'
+            name="Consumo do veículo"
+            unit="Km/L"
+            type="step"
             cb={this.updateGasConsumption}
           />
           <CustomInput
-            name='Preço da gasolina'
-            unit='R$'
-            type='currency'
+            name="Preço da gasolina"
+            unit="R$"
+            type="currency"
             value={this.state.gasPrice}
             cb={this.updateGasPrice}
           />
           <CustomInput
-            name='Quantidade de Participantes'
-            type='step'
+            name="Quantidade de Participantes"
+            type="step"
             cb={this.updateParticipants}
           />
           <p>
             <input
-              className='button'
-              type='button'
-              value='Calcular'
+              className="button"
+              type="button"
+              value="Calcular"
               onClick={this.updateResult}
             />
           </p>
 
-          <div className='CostBox'>
-            <div className='CostTitle'>Valor total</div>
-            <div className='Cost'>R$ {this.state.result}</div>
-            <div className='Calc'>
+          <div className="CostBox">
+            <div className="CostTitle">Valor total</div>
+            <div className="Cost">R$ {this.state.result}</div>
+            <div className="Calc">
               ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
               {this.state.gasPrice}{' '}
             </div>
           </div>
 
-          <div className='CostBox'>
-            <div className='CostTitle'>Por pessoa</div>
-            <div className='Cost'>R$ {this.state.pricePerPerson}</div>
-            <div className='Calc'>
+          <div className="CostBox">
+            <div className="CostTitle">Por pessoa</div>
+            <div className="Cost">R$ {this.state.pricePerPerson}</div>
+            <div className="Calc">
               {this.state.result} / {this.state.participants}
             </div>
           </div>

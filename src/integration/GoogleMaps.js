@@ -13,8 +13,8 @@ class GooggleMapsBox extends Component {
       });
       directionsDisplay.setMap(map);
 
-      document.getElementById('submit').addEventListener('click', (e) => {
-         e.preventDefault();
+      document.getElementById('submit').addEventListener('click', e => {
+        e.preventDefault();
         window.calculateAndDisplayRoute(directionsService, directionsDisplay);
       });
     };
@@ -23,20 +23,17 @@ class GooggleMapsBox extends Component {
       directionsService,
       directionsDisplay
     ) => {
-
-      const addressList = Object.assign([], this.props.addressList)
-      const origin = addressList.splice(0, 1)[0]
-      const destination = addressList.splice(addressList.length-1, 1)[0]
-
+      const addressList = Object.assign([], this.props.addressList);
+      const origin = addressList.splice(0, 1)[0];
+      const destination = addressList.splice(addressList.length - 1, 1)[0];
 
       const waypts = [];
-      addressList.forEach((addrr)=> {
-          waypts.push({
-              location: addrr.value,
-              stopover: true
-          });
+      addressList.forEach(addrr => {
+        waypts.push({
+          location: addrr.value,
+          stopover: true,
+        });
       });
-
 
       directionsService.route(
         {
@@ -53,15 +50,12 @@ class GooggleMapsBox extends Component {
 
             let totalDistance = 0;
 
-            route.legs.forEach((route) => {
+            route.legs.forEach(route => {
               totalDistance += route.distance.value;
             });
 
-            console.log('totalDistance: ', totalDistance)
-            console.log('totalDistance: ', Number(totalDistance/1000), 'km')
-
-            this.props.cb(Number(totalDistance/1000));
-           } else {
+            this.props.cb(Number(totalDistance / 1000));
+          } else {
             window.alert('Directions request failed due to ' + status);
           }
         }
@@ -69,11 +63,13 @@ class GooggleMapsBox extends Component {
     };
   }
 
-
   loadMapsApi() {
-    const apiKey = 'REACT_APP_API_KEY';
+    const apiKey = process.env.REACT_APP_API_KEY;
     const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key={apiKey}&callback=initMap'.replace('{apiKey}', apiKey);
+    script.src = 'https://maps.googleapis.com/maps/api/js?key={apiKey}&callback=initMap'.replace(
+      '{apiKey}',
+      apiKey
+    );
     script.onload = () => {
       setTimeout(() => {
         document.getElementById('header').hidden = true;
@@ -83,15 +79,14 @@ class GooggleMapsBox extends Component {
     document.body.appendChild(script);
   }
 
-// TODO (jonathadv): Try to automate API_KEY replacement in here to avoid using it inside index.html
-//  componentWillMount(){
-//      this.loadMapsApi();
-//  }
+  componentWillMount() {
+    this.loadMapsApi();
+  }
 
   render() {
     return (
-      <div id='MapWrapper' className='MapWrapper'>
-        <div id='map' />
+      <div id="MapWrapper" className="MapWrapper">
+        <div id="map" />
       </div>
     );
   }

@@ -15,8 +15,8 @@ class CustomInput extends Component {
 
       return (
         <input
-          placeholder='0'
-          type=''
+          placeholder="0"
+          type=""
           min={min}
           max={max}
           step={step}
@@ -30,13 +30,13 @@ class CustomInput extends Component {
       return (
         <CurrencyInput
           value={this.props.value}
-          inputType='tel'
+          inputType="tel"
           onChangeEvent={this.updateValue}
         />
       );
     }
 
-    return <input placeholder='' type={type} onChange={this.updateValue} />;
+    return <input placeholder="" type={type} onChange={this.updateValue} />;
   };
 
   render() {
@@ -45,7 +45,7 @@ class CustomInput extends Component {
     const type = this.props.type ? this.props.type : 'text';
 
     return (
-      <div className='CalcInput'>
+      <div className="CalcInput">
         {name + unit}
         {this.generateInput(type)}
       </div>

@@ -6,26 +6,28 @@ class MapSearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        addressList: []
-    }
+      addressList: [],
+    };
   }
 
-  setDistance(distance){
+  setDistance(distance) {
     this.props.cb(distance);
   }
 
   render() {
     return (
-      <div className='MapSearchBox'>
-        <GoogleMapsBox addressList={this.state.addressList} cb={this.setDistance.bind(this)}/>
-        <AddressBox addressList={this.state.addressList}/>
-        <input
-          className='CalcDistanceButton'
-          type='submit'
-          id='submit'
-          value='Calcular Distância'
+      <div className="MapSearchBox">
+        <GoogleMapsBox
+          addressList={this.state.addressList}
+          cb={this.setDistance.bind(this)}
         />
-
+        <AddressBox addressList={this.state.addressList} />
+        <input
+          className="CalcDistanceButton"
+          type="submit"
+          id="submit"
+          value="Calcular Distância"
+        />
       </div>
     );
   }
