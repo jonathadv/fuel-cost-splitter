@@ -2,6 +2,7 @@
 
 > A simple webapp to split the fuel cost with friends
 
+Search and calcule the distance between places automatically with Google Maps, add the fuel price, vehicle consumption and the number of people to split the trip cost, so get how much each one should pay. ;-)
 
 ### Local environment
 
