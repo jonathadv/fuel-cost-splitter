@@ -30,7 +30,7 @@ class GoogleMaps extends Component {
 
   // This code loads the Google Maps API Library
   // from Google server and sets the needed functions into
-  // `window` reference so them can be called globaly by Maps API.
+  // `window` reference so they can be called globaly by Maps API.
   setGoogleObjectsToWindow() {
     window.initMap = () => {
       const directionsService = new window.google.maps.DirectionsService();
