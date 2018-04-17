@@ -79,7 +79,7 @@ class GoogleMaps extends Component {
           destination: destination.value,
           waypoints: waypts,
           optimizeWaypoints: true,
-          travelMode: 'DRIVING',
+          travelMode: this.props.travelMode,
         },
         (response, status) => {
           if (status === 'OK') {
@@ -101,10 +101,10 @@ class GoogleMaps extends Component {
     };
   }
 
-  hideHeaderAndShowMap() {
-    setTimeout(() => {
-      document.getElementById('header').hidden = true;
-    }, 3000);
+  onLoad() {
+    if (this.props.onLoad) {
+      this.props.onLoad();
+    }
   }
 
   loadApiLibrary() {
@@ -115,7 +115,7 @@ class GoogleMaps extends Component {
       apiKey
     );
     script.onload = () => {
-      this.hideHeaderAndShowMap();
+      this.onLoad();
     };
 
     this.setGoogleObjectsToWindow();
@@ -136,8 +136,10 @@ class GoogleMaps extends Component {
 }
 
 GoogleMaps.propTypes = {
+  travelMode: PropTypes.string,
   initLat: PropTypes.number,
   initLng: PropTypes.number,
+  onLoad: PropTypes.func,
   addressList: PropTypes.array.isRequired,
   setDistanceCb: PropTypes.func.isRequired,
   submitElementId: PropTypes.string.isRequired,
@@ -146,6 +148,7 @@ GoogleMaps.propTypes = {
 GoogleMaps.defaultProps = {
   initLat: -30.0277,
   initLng: -51.2287,
+  travelMode: 'DRIVING',
 };
 
 export default GoogleMaps;

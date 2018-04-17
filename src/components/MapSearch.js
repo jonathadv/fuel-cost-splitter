@@ -16,6 +16,12 @@ class MapSearch extends Component {
     this.props.setDistanceCb(distance);
   }
 
+  onLoadMap() {
+    setTimeout(() => {
+      document.getElementById('header').hidden = true;
+    }, 3000);
+  }
+
   render() {
     return (
       <div className="MapSearchBox">
@@ -23,6 +29,7 @@ class MapSearch extends Component {
           addressList={this.state.addressList}
           setDistanceCb={this.setDistance.bind(this)}
           submitElementId={this.state.submitElementId}
+          onLoad={this.onLoadMap}
         />
         <AddressBox addressList={this.state.addressList} />
         <input
