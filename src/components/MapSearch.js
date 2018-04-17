@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
 import AddressBox from './AddressBox';
-import GoogleMapsBox from '../integration/GoogleMaps';
+import GoogleMaps from '../integration/GoogleMaps';
 
-class MapSearchBox extends Component {
+class MapSearch extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       addressList: [],
+      submitElementId: 'submit',
     };
   }
 
   setDistance(distance) {
-    this.props.cb(distance);
+    this.props.setDistanceCb(distance);
   }
 
   render() {
     return (
       <div className="MapSearchBox">
-        <GoogleMapsBox
+        <GoogleMaps
           addressList={this.state.addressList}
-          cb={this.setDistance.bind(this)}
+          setDistanceCb={this.setDistance.bind(this)}
+          submitElementId={this.state.submitElementId}
         />
         <AddressBox addressList={this.state.addressList} />
         <input
           className="CalcDistanceButton"
           type="submit"
-          id="submit"
+          id={this.state.submitElementId}
           value="Calcular Distância"
         />
       </div>
@@ -33,4 +36,4 @@ class MapSearchBox extends Component {
   }
 }
 
-export default MapSearchBox;
+export default MapSearch;
