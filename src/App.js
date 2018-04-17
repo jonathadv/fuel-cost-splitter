@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CustomInput from './components/CustomInput.js';
-import MapSearchBox from './components/MapSearchBox.js';
+import MapSearch from './components/MapSearch.js';
 import './App.css';
 
 class App extends Component {
@@ -57,7 +57,7 @@ class App extends Component {
           <h1 className="App-title">Fuel Cost Splitter</h1>
         </header>
 
-        <MapSearchBox cb={this.updateCarPath.bind(this)} />
+        <MapSearch setDistanceCb={this.updateCarPath.bind(this)} />
         <div className="AppBody">
           <CustomInput
             name="Distância Total"
@@ -120,6 +120,7 @@ class App extends Component {
             <a
               href="https://github.com/jonathadv/fuel-cost-splitter"
               target="_blank"
+              rel="noopener noreferrer"
             >
               About
             </a>
