@@ -140,7 +140,7 @@ GoogleMaps.propTypes = {
   initLng: PropTypes.number,
   addressList: PropTypes.array.isRequired,
   setDistanceCb: PropTypes.func.isRequired,
-  submitElementId: PropTypes.string,
+  submitElementId: PropTypes.string.isRequired,
 };
 
 GoogleMaps.defaultProps = {
