@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddressBox from './AddressBox';
+import AddressList from './AddressList';
 import GoogleMaps from '../integration/GoogleMaps';
 
 class MapSearch extends Component {
@@ -31,7 +31,7 @@ class MapSearch extends Component {
           submitElementId={this.state.submitElementId}
           onLoad={this.onLoadMap}
         />
-        <AddressBox addressList={this.state.addressList} />
+        <AddressList addressList={this.state.addressList} />
         <input
           className="CalcDistanceButton"
           type="submit"

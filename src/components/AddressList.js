@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GooglePlaceAutocomplete from '../integration/GooglePlaceAutocomplete';
 
-class AddressBox extends Component {
+class AddressList extends Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +53,13 @@ class AddressBox extends Component {
     });
   }
 
-  updateAddress(e) {
+  setAddress(index, value) {
+    const addressList = this.state.addressList;
+    addressList[index].value = value;
+    this.setState(addressList);
+  }
+
+  inputOnblur(e) {
     const addressList = this.state.addressList;
     const currentItem = e.nativeEvent.target;
     addressList[currentItem.id].value = currentItem.value;
@@ -79,19 +84,19 @@ class AddressBox extends Component {
           <input
             id={index}
             placeholder={getAddressPlaceholder(index)}
-            value={address.value}
-            onChange={this.updateAddress.bind(this)}
-            className="AddressBox"
+            defaultValue={address.value}
+            className="AddressList"
+            onBlur={this.inputOnblur.bind(this)}
           />
           <button
-            className="AddressBoxButton"
+            className="AddressListButton"
             id={index}
             onClick={this.removeAddress.bind(this)}
           >
             -
           </button>
           <button
-            className="AddressBoxButton"
+            className="AddressListButton"
             id={index}
             onClick={this.addAddress.bind(this)}
           >
@@ -103,18 +108,42 @@ class AddressBox extends Component {
     return tags;
   }
 
+  // Based on Google Places Autocomplition documentation
+  // https://developers.google.com/maps/documentation/javascript/places-autocomplete
+  // This code expects that Google Libraries are already loaded.
+  registerInputTextToAutocomplete() {
+    this.state.addressList.forEach((input, index) => {
+      const autocomplete = new window.google.maps.places.Autocomplete(
+        document.getElementById(index),
+        { types: [] }
+      );
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        this.setAddress(index, place.formatted_address);
+      });
+    });
+  }
+
+  // FIXME (jonathadv): Make  this.registerInputTextToAutocomplete() to be
+  // called only when google library is fully loaded.
+  componentDidMount() {
+    setTimeout(() => {
+      this.registerInputTextToAutocomplete();
+    }, 5000);
+  }
+
+  componentDidUpdate() {
+    this.registerInputTextToAutocomplete();
+  }
+
   render() {
-    return (
-      <div className="box">
-        <GooglePlaceAutocomplete />
-        {this.renderAddresses()}
-      </div>
-    );
+    return <div className="box">{this.renderAddresses()}</div>;
   }
 }
 
-AddressBox.propTypes = {
+AddressList.propTypes = {
   addressList: PropTypes.array.isRequired,
 };
 
-export default AddressBox;
+export default AddressList;
