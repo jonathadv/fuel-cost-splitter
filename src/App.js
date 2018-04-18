@@ -65,7 +65,29 @@ class App extends Component {
       window.scrollTo(0, document.body.scrollHeight);
     };
   }
+  generateSharingText() {
+    const sharing = this.state.i18n.messages.sharing
+      .replace(/{addresses}/g, '<em breve>')
+      .replace(/{distance}/g, this.state.pathLength + this.state.i18n.labels.km)
+      .replace(
+        /{fuelPrice}/g,
+        this.state.i18n.labels.currency + this.state.gasPrice
+      )
+      .replace(
+        /{vehicleConsumption}/g,
+        this.state.gasConsumption + this.state.i18n.labels.kmByLeter
+      )
+      .replace(/{participants}/g, this.state.participants)
+      .replace(/{total}/g, this.state.i18n.labels.currency + this.state.result)
+      .replace(
+        /{perPerson}/g,
+        this.state.i18n.labels.currency + this.state.pricePerPerson
+      )
+      .replace(/{url}/g, process.env.PUBLIC_URL);
 
+    console.log(sharing);
+    return encodeURIComponent(sharing);
+  }
   render() {
     return (
       <div className="App">
@@ -134,6 +156,14 @@ class App extends Component {
             <div className="Calc">
               {this.state.result} / {this.state.participants}
             </div>
+            <p>
+              <a
+                href={'whatsapp://send?text=' + this.generateSharingText()}
+                data-action="share/whatsapp/share"
+              >
+                Share via Whatsapp
+              </a>
+            </p>
           </div>
         </div>
 

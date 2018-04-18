@@ -19,4 +19,8 @@ module.exports = {
     decimalSeparator: ',',
     thousandSeparator: '.',
   },
+  messages: {
+    sharing:
+      'Olá,\nSegue a divisão do custo do combustivel do nosso passeio:\n-Endereços:\n{addresses}\n-Distância: {distance}\n-Preço do Combustível: {fuelPrice}\n-Consumo do Veículo: {vehicleConsumption}\n-Participantes: {participants}\n-Total: {total} \n-Por pessoa: {perPerson}\n\nFormula: ( {distance}/{vehicleConsumption} ) x {fuelPrice}\nTotal: {total} / {participants} = {perPerson}\n\nPowered by: {url}',
+  },
 };
