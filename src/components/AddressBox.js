@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import GooglePlaceAutocomplete from '../integration/GooglePlaceAutocomplete';
 
 class AddressBox extends Component {
   constructor(props) {
@@ -103,7 +104,12 @@ class AddressBox extends Component {
   }
 
   render() {
-    return <div className="box">{this.renderAddresses()}</div>;
+    return (
+      <div className="box">
+        <GooglePlaceAutocomplete />
+        {this.renderAddresses()}
+      </div>
+    );
   }
 }
 
