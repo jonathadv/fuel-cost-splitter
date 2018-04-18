@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import browserLocale from 'browser-locale';
 import CustomInput from './components/CustomInput.js';
 import MapSearch from './components/MapSearch.js';
+import i18n from './i18n';
 import './App.css';
 
 class App extends Component {
@@ -8,6 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      i18n: i18n(browserLocale()),
       pathLength: 0,
       gasConsumption: 0,
       gasPrice: 0,
@@ -33,17 +36,30 @@ class App extends Component {
     };
 
     this.updateResult = () => {
+      const asNumber = value => {
+        const strNumber = value.toString();
+        if (strNumber.indexOf(',') > -1) {
+          return Number(strNumber.replace(',', '.'));
+        }
+        return Number(value);
+      };
+
+      const asCurrency = value => {
+        const strNumber = value.toString();
+        return strNumber.replace('.', this.state.i18n.math.decimalSeparator);
+      };
+
       const { pathLength, gasConsumption, gasPrice, participants } = this.state;
 
-      const result = parseFloat(pathLength / gasConsumption * gasPrice).toFixed(
-        2
-      );
+      const result = parseFloat(
+        pathLength / gasConsumption * asNumber(gasPrice)
+      ).toFixed(2);
 
       const pricePerPerson = parseFloat(result / participants).toFixed(2);
 
       this.setState({
-        result,
-        pricePerPerson,
+        result: asCurrency(result),
+        pricePerPerson: asCurrency(pricePerPerson),
       });
 
       window.scrollTo(0, document.body.scrollHeight);
@@ -53,50 +69,55 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header id="header" className="App-header">
-          <h1 className="App-title">Fuel Cost Splitter</h1>
-        </header>
-
-        <MapSearch setDistanceCb={this.updateCarPath.bind(this)} />
+        <MapSearch
+          i18n={this.state.i18n}
+          setDistanceCb={this.updateCarPath.bind(this)}
+        />
         <div className="AppBody">
           <CustomInput
-            name="Distância Total"
-            unit="Km"
+            name={this.state.i18n.labels.totalDistance}
+            unit={this.state.i18n.labels.km}
             type="step"
             step="0.01"
+            i18n={this.state.i18n}
             value={this.state.pathLength}
             cb={this.updateCarPath}
           />
           <CustomInput
-            name="Consumo do veículo"
-            unit="Km/L"
+            name={this.state.i18n.labels.vehicleConsumption}
+            unit={this.state.i18n.labels.kmByLiter}
+            i18n={this.state.i18n}
             type="step"
             cb={this.updateGasConsumption}
           />
           <CustomInput
-            name="Preço da gasolina"
-            unit="R$"
+            name={this.state.i18n.labels.fuelPrice}
+            unit={this.state.i18n.labels.currency}
             type="currency"
             value={this.state.gasPrice}
+            i18n={this.state.i18n}
             cb={this.updateGasPrice}
           />
           <CustomInput
-            name="Quantidade de Participantes"
+            name={this.state.i18n.labels.peopleToSplit}
             type="step"
+            i18n={this.state.i18n}
             cb={this.updateParticipants}
           />
           <p>
             <input
               className="button"
               type="button"
-              value="Calcular"
+              value={this.state.i18n.labels.calculate}
               onClick={this.updateResult}
             />
           </p>
 
           <div className="CostBox">
-            <div className="CostTitle">Valor total</div>
-            <div className="Cost">R$ {this.state.result}</div>
+            <div className="CostTitle">{this.state.i18n.labels.totalCost}</div>
+            <div className="Cost">
+              {this.state.i18n.labels.currency} {this.state.result}
+            </div>
             <div className="Calc">
               ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
               {this.state.gasPrice}{' '}
@@ -104,8 +125,12 @@ class App extends Component {
           </div>
 
           <div className="CostBox">
-            <div className="CostTitle">Por pessoa</div>
-            <div className="Cost">R$ {this.state.pricePerPerson}</div>
+            <div className="CostTitle">
+              {this.state.i18n.labels.costPerPerson}
+            </div>
+            <div className="Cost">
+              {this.state.i18n.labels.currency} {this.state.pricePerPerson}
+            </div>
             <div className="Calc">
               {this.state.result} / {this.state.participants}
             </div>
@@ -113,7 +138,7 @@ class App extends Component {
         </div>
 
         <footer className="footer">
-          <p>Fuel Cost Splitter</p>
+          <p>Fuel Cost Splitter - BETA</p>
           <p>A simple webapp to split the fuel cost with friends</p>
 
           <p>

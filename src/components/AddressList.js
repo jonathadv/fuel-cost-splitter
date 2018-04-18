@@ -70,11 +70,11 @@ class AddressList extends Component {
     const tags = [];
     const getAddressPlaceholder = index => {
       if (index === 0) {
-        return 'origin';
+        return this.props.i18n.labels.origin;
       } else if (index === this.state.addressList.length - 1) {
-        return 'destination';
+        return this.props.i18n.labels.destination;
       } else {
-        return 'stop';
+        return this.props.i18n.labels.stopPoint;
       }
     };
 
@@ -125,12 +125,23 @@ class AddressList extends Component {
     });
   }
 
-  // FIXME (jonathadv): Make  this.registerInputTextToAutocomplete() to be
-  // called only when google library is fully loaded.
-  componentDidMount() {
-    setTimeout(() => {
-      this.registerInputTextToAutocomplete();
-    }, 5000);
+  loadGoogleAutocompleteLibrary(attempt) {
+    if (attempt >= 10) {
+      alert('Error Loading Google API. Try to reload page.');
+      return;
+    }
+    if (!window.google) {
+      return setTimeout(
+        () => this.loadGoogleAutocompleteLibrary(attempt + 1),
+        500
+      );
+    } else {
+      return this.registerInputTextToAutocomplete();
+    }
+  }
+
+  componentWillMount() {
+    return this.loadGoogleAutocompleteLibrary(1);
   }
 
   componentDidUpdate() {
@@ -143,7 +154,7 @@ class AddressList extends Component {
 }
 
 AddressList.propTypes = {
-  addressList: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
 };
 
 export default AddressList;

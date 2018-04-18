@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CurrencyInput from 'react-currency-input';
 
 class CustomInput extends Component {
@@ -29,6 +30,8 @@ class CustomInput extends Component {
     if (type === 'currency') {
       return (
         <CurrencyInput
+          decimalSeparator={this.props.i18n.math.decimalSeparator}
+          thousandSeparator={this.props.i18n.math.thousandSeparator}
           value={this.props.value}
           inputType="tel"
           onChangeEvent={this.updateValue}
@@ -52,5 +55,9 @@ class CustomInput extends Component {
     );
   }
 }
+
+CustomInput.propTypes = {
+  i18n: PropTypes.object.isRequired,
+};
 
 export default CustomInput;
