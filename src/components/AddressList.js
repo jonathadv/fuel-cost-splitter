@@ -85,23 +85,26 @@ class AddressList extends Component {
             id={index}
             placeholder={getAddressPlaceholder(index)}
             defaultValue={address.value}
-            className="AddressList"
+            className="form-control"
             onBlur={this.inputOnblur.bind(this)}
           />
-          <button
-            className="AddressListButton"
-            id={index}
-            onClick={this.removeAddress.bind(this)}
-          >
-            -
-          </button>
-          <button
-            className="AddressListButton"
-            id={index}
-            onClick={this.addAddress.bind(this)}
-          >
-            +
-          </button>
+
+          <div className="btn-group btn-group-toggle" data-toggle="buttons">
+            <button
+              className="btn btn-secondary"
+              id={index}
+              onClick={this.removeAddress.bind(this)}
+            >
+              -
+            </button>
+            <button
+              className="btn btn-secondary"
+              id={index}
+              onClick={this.addAddress.bind(this)}
+            >
+              +
+            </button>
+          </div>
         </div>
       );
     });

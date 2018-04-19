@@ -1,4 +1,6 @@
 module.exports = {
+  langCode: 'en-us',
+  langName: 'English',
   labels: {
     origin: 'Origin',
     destination: 'Destination',
@@ -22,7 +24,8 @@ module.exports = {
   },
 
   messages: {
+    whatsapp: 'Send via WhatsApp',
     sharing:
-      'Hey,\nFollowing our trip fuel cost sharing:\n-Addresses:\n{addresses}\n-Distance: {distance}\n-Fuel price: {fuelPrice}\n-Vehicle Consumption: {vehicleConsumption}\n-Participants: {participants}\n-Total: {total} \n-Per Person: {perPerson}\n\nFormula: ( {distance}/{vehicleConsumption} ) x {fuelPrice}\nTotal: {total} / {participants} = {perPerson}\n\nPowered by: {url}',
+      'Hey,\nFollowing our trip fuel cost sharing:\n-Addresses:\n{addresses}\n\n-Distance: {distance}\n-Fuel price: {fuelPrice}\n-Vehicle Consumption: {vehicleConsumption}\n-Participants: {participants}\n-Total: {total} \n-Per Person: {perPerson}\n\nFormula: ( {distance}/{vehicleConsumption} ) x {fuelPrice}\nTotal: {total} / {participants} = {perPerson}\n\nPowered by: {url}',
   },
 };

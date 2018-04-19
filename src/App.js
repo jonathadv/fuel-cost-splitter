@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import browserLocale from 'browser-locale';
-import CustomInput from './components/CustomInput.js';
-import MapSearch from './components/MapSearch.js';
+import CustomInput from './components/CustomInput';
+import MapSearch from './components/MapSearch';
+import SharingLinks from './components/SharingLinks';
 import i18n from './i18n';
 import './App.css';
 
@@ -17,6 +18,7 @@ class App extends Component {
       participants: 0,
       result: 0,
       pricePerPerson: 0,
+      addressList: [],
     };
 
     this.updateCarPath = value => {
@@ -65,37 +67,64 @@ class App extends Component {
       window.scrollTo(0, document.body.scrollHeight);
     };
   }
-  generateSharingText() {
-    const sharing = this.state.i18n.messages.sharing
-      .replace(/{addresses}/g, '<em breve>')
-      .replace(/{distance}/g, this.state.pathLength + this.state.i18n.labels.km)
-      .replace(
-        /{fuelPrice}/g,
-        this.state.i18n.labels.currency + this.state.gasPrice
-      )
-      .replace(
-        /{vehicleConsumption}/g,
-        this.state.gasConsumption + this.state.i18n.labels.kmByLeter
-      )
-      .replace(/{participants}/g, this.state.participants)
-      .replace(/{total}/g, this.state.i18n.labels.currency + this.state.result)
-      .replace(
-        /{perPerson}/g,
-        this.state.i18n.labels.currency + this.state.pricePerPerson
-      )
-      .replace(/{url}/g, process.env.PUBLIC_URL);
 
-    console.log(sharing);
-    return encodeURIComponent(sharing);
+  changeLang(e) {
+    const newLangCode = e.nativeEvent.target.id;
+    this.setState({
+      i18n: i18n(newLangCode),
+    });
   }
+
+  renderMenu() {
+    return (
+      <ul className="nav nav-tabs">
+        <li className="nav-item dropdown">
+          <button
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Idioma
+          </button>
+          <div className="dropdown-menu">
+            <button
+              className="dropdown-item"
+              id="pt"
+              onClick={this.changeLang.bind(this)}
+            >
+              Português
+            </button>
+            <button
+              className="dropdown-item"
+              id="en"
+              onClick={this.changeLang.bind(this)}
+            >
+              English
+            </button>
+          </div>
+        </li>
+        <li className="nav-item">
+          <span className="nav-link disabled">
+            {this.state.i18n.langName}
+          </span>
+        </li>
+      </ul>
+    );
+  }
+
   render() {
     return (
-      <div className="App">
+      <div className="container">
+        {this.renderMenu()}
         <MapSearch
           i18n={this.state.i18n}
           setDistanceCb={this.updateCarPath.bind(this)}
+          addressList={this.state.addressList}
         />
-        <div className="AppBody">
+
+        <div className="form-group">
           <CustomInput
             name={this.state.i18n.labels.totalDistance}
             unit={this.state.i18n.labels.km}
@@ -126,16 +155,16 @@ class App extends Component {
             i18n={this.state.i18n}
             cb={this.updateParticipants}
           />
-          <p>
+          <p className="text-center">
             <input
-              className="button"
+              className="btn btn-outline-primary"
               type="button"
               value={this.state.i18n.labels.calculate}
               onClick={this.updateResult}
             />
           </p>
 
-          <div className="CostBox">
+          <div className="text-center">
             <div className="CostTitle">{this.state.i18n.labels.totalCost}</div>
             <div className="Cost">
               {this.state.i18n.labels.currency} {this.state.result}
@@ -146,7 +175,7 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="CostBox">
+          <div className="text-center">
             <div className="CostTitle">
               {this.state.i18n.labels.costPerPerson}
             </div>
@@ -156,15 +185,8 @@ class App extends Component {
             <div className="Calc">
               {this.state.result} / {this.state.participants}
             </div>
-            <p>
-              <a
-                href={'whatsapp://send?text=' + this.generateSharingText()}
-                data-action="share/whatsapp/share"
-              >
-                Share via Whatsapp
-              </a>
-            </p>
           </div>
+          <SharingLinks formState={this.state} i18n={this.state.i18n} />
         </div>
 
         <footer className="footer">

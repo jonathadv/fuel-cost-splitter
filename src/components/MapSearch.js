@@ -8,7 +8,7 @@ class MapSearch extends Component {
     super(props);
 
     this.state = {
-      addressList: [],
+      addressList: this.props.addressList,
       submitElementId: 'submit',
     };
   }
@@ -31,7 +31,7 @@ class MapSearch extends Component {
           addressList={this.state.addressList}
         />
         <input
-          className="CalcDistanceButton"
+          className="btn btn-outline-primary"
           type="submit"
           id={this.state.submitElementId}
           value={this.props.i18n.labels.calculateDistance}
