@@ -81,29 +81,33 @@ class AddressList extends Component {
     this.state.addressList.forEach((address, index) => {
       tags.push(
         <div key={address.hash}>
-          <input
-            id={index}
-            placeholder={getAddressPlaceholder(index)}
-            defaultValue={address.value}
-            className="form-control"
-            onBlur={this.inputOnblur.bind(this)}
-          />
+          <div className="input-group" data-toggle="buttons">
+            <input
+              id={index}
+              placeholder={getAddressPlaceholder(index)}
+              defaultValue={address.value}
+              className="form-control"
+              onBlur={this.inputOnblur.bind(this)}
+            />
 
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
-            <button
-              className="btn btn-secondary"
-              id={index}
-              onClick={this.removeAddress.bind(this)}
-            >
-              -
-            </button>
-            <button
-              className="btn btn-secondary"
-              id={index}
-              onClick={this.addAddress.bind(this)}
-            >
-              +
-            </button>
+            <div className="btn-group" data-toggle="buttons">
+              <button
+                className="btn btn-outline-danger"
+                id={index}
+                onClick={this.removeAddress.bind(this)}
+              >
+                {' '}
+                -{' '}
+              </button>
+              <button
+                className="btn btn-outline-secondary"
+                id={index}
+                onClick={this.addAddress.bind(this)}
+              >
+                {' '}
+                +{' '}
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -152,7 +156,7 @@ class AddressList extends Component {
   }
 
   render() {
-    return <div className="box">{this.renderAddresses()}</div>;
+    return <div className="conatiner">{this.renderAddresses()}</div>;
   }
 }
 
