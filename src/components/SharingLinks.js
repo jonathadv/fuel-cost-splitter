@@ -36,8 +36,6 @@ class SharingLinks extends Component {
       )
       .replace(/{url}/g, process.env.PUBLIC_URL);
 
-    console.log(text);
-
     return encodeURIComponent(text);
   }
 
