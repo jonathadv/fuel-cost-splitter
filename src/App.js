@@ -116,6 +116,14 @@ class App extends Component {
                     <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a
                             className="dropdown-item"
+                            href={this.state.i18n.urls.license}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {this.state.i18n.labels.license}
+                        </a>
+                        <a
+                            className="dropdown-item"
                             href={this.state.i18n.urls.reportIssue}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -220,7 +228,6 @@ class App extends Component {
                     </div>
                     <SharingLinks formState={this.createFormState()} i18n={this.state.i18n} />
                 </div>
-
             </div>
         );
     }

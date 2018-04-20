@@ -20,6 +20,7 @@ module.exports = {
         reportIssue: 'Reportar Problema',
         about: 'Sobre',
         moreInfo: 'Info',
+        license: 'Licença',
     },
     math: {
         decimalSeparator: ',',
@@ -34,5 +35,6 @@ module.exports = {
     urls: {
         about: 'https://github.com/jonathadv/fuel-cost-splitter',
         reportIssue: 'https://github.com/jonathadv/fuel-cost-splitter/issues',
+        license: 'https://github.com/jonathadv/fuel-cost-splitter/blob/master/LICENSE.pt.md',
     },
 };
