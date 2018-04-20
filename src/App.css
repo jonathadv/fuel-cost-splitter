@@ -1,5 +1,3 @@
-
-
 .CostBox {
   padding: 10px;
 }
@@ -22,29 +20,8 @@
   color: gray;
 }
 
-
-
-.AddressList {
-    text-align: center;
-    position: relative;
-    font-size: 1.0em;
-    margin: 5px;
-    width: 350px;
-}
-
-.AddressBoxButton {
-    text-align: center;
-    display: inline-block;
-    position: relative;
-    font-size: 1em;
-    margin: 5px;
-    width: 50px;
-}
-
 .MapSearchBox {
     text-align: center;
-    text-align: center;
-    position: relative;  
  }
 
 .MapWrapper {
@@ -52,35 +29,9 @@
     height: 200px;
 }
 
-.CalcDistanceButton {
-    width: 300px;
-    font-size: 1em;
-}
-
 .map {
     height: 100%;
     width: 100%;
-}
-
-input {
-    text-align: center;
-    display: inline-block;
-    position: relative;
-    font-size: 1.5em;
-    margin: 5px;
-    width: 200px;
-}
-
-.footer {
-  padding:10px;
-  padding-bottom:5px;
-  background:#eae0d5;
-  color:#22333b;
-  font-weight:bold;
-  font-size:15px;
-  text-align:center;
-  bottom:0;          /*to the bottom of the body*/
-  left:0;            /*and to the left of the body.*/
 }
 
 
