@@ -30,7 +30,7 @@ module.exports = {
     messages: {
         sendViaWhatsApp: 'Send via WhatsApp',
         whatsAppSharing:
-            'Hey,\nFollowing our trip fuel cost sharing:\n\n*Addresses:*\n{addresses}\n----------\n\n-Distance: {distance}\n-Fuel price: {fuelPrice}\n-Vehicle Consumption: {vehicleConsumption}\n-Participants: {participants}\n-Total: {total} \n-Per Person: {perPerson}\n\n*Total Cost Formula:*\n```({distance}÷{vehicleConsumption})x{fuelPrice}```\n*Splitting Formula:*\n ```{total}÷{participants}={perPerson}```\n\nPowered by: {url}',
+            'Hey,\nFollowing our trip fuel cost sharing:\n\n*Addresses:*\n{addresses}\n```----------```\n\n-Distance: {distance}\n-Fuel price: {fuelPrice}\n-Vehicle Consumption: {vehicleConsumption}\n-Participants: {participants}\n-Total: {total} \n-Per Person: {perPerson}\n\n*Total Cost Formula:*\n```({distance}÷{vehicleConsumption})x{fuelPrice}```\n*Splitting Formula:*\n ```{total}÷{participants}={perPerson}```\n\nPowered by: {url}',
     },
     urls: {
         about: 'https://github.com/jonathadv/fuel-cost-splitter',
