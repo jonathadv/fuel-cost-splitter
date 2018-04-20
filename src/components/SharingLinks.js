@@ -5,7 +5,7 @@ class SharingLinks extends Component {
     getAddresses() {
         const addresses = [];
         this.props.formState.addressList.forEach(addr => {
-            addresses.push('-> ' + addr.value);
+            addresses.push('• ' + addr.value);
         });
         return addresses.join('\n');
     }
