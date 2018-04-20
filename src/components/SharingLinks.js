@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class SharingLinks extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = this.props.formState;
-  }
-
   getAddresses() {
     const addresses = [];
     this.props.formState.addressList.forEach(addr => {
@@ -17,22 +11,28 @@ class SharingLinks extends Component {
   }
 
   generateSharingText() {
-    const sharing = this.state.i18n.messages.sharing
+    const sharing = this.props.i18n.messages.sharing
       .replace(/{addresses}/g, this.getAddresses())
-      .replace(/{distance}/g, this.state.pathLength + this.state.i18n.labels.km)
+      .replace(
+        /{distance}/g,
+        this.props.formState.pathLength + this.props.i18n.labels.km
+      )
       .replace(
         /{fuelPrice}/g,
-        this.state.i18n.labels.currency + this.state.gasPrice
+        this.props.i18n.labels.currency + this.props.formState.gasPrice
       )
       .replace(
         /{vehicleConsumption}/g,
-        this.state.gasConsumption + this.state.i18n.labels.kmByLiter
+        this.props.formState.gasConsumption + this.props.i18n.labels.kmByLiter
       )
-      .replace(/{participants}/g, this.state.participants)
-      .replace(/{total}/g, this.state.i18n.labels.currency + this.state.result)
+      .replace(/{participants}/g, this.props.formState.participants)
+      .replace(
+        /{total}/g,
+        this.props.i18n.labels.currency + this.props.formState.result
+      )
       .replace(
         /{perPerson}/g,
-        this.state.i18n.labels.currency + this.state.pricePerPerson
+        this.props.i18n.labels.currency + this.props.formState.pricePerPerson
       )
       .replace(/{url}/g, process.env.PUBLIC_URL);
 
@@ -48,7 +48,7 @@ class SharingLinks extends Component {
             data-action="share/whatsapp/share"
           >
             <button type="button" className="btn btn-outline-success">
-              {this.state.i18n.messages.whatsapp}
+              {this.props.i18n.messages.whatsapp}
             </button>
           </a>
         </p>

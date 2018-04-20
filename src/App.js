@@ -82,11 +82,10 @@ class App extends Component {
           <button
             className="nav-link dropdown-toggle"
             data-toggle="dropdown"
-            role="button"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Idioma
+            {this.state.i18n.langName}
           </button>
           <div className="dropdown-menu">
             <button
@@ -106,12 +105,29 @@ class App extends Component {
           </div>
         </li>
         <li className="nav-item">
-          <span className="nav-link disabled">
-            {this.state.i18n.langName}
-          </span>
+          <a
+            href="https://github.com/jonathadv/fuel-cost-splitter/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link"
+          >
+            {this.state.i18n.labels.reportIssue}
+          </a>
         </li>
       </ul>
     );
+  }
+
+  createFormState() {
+    return {
+      pathLength: this.state.pathLength,
+      gasConsumption: this.state.gasConsumption,
+      gasPrice: this.state.gasPrice,
+      participants: this.state.participants,
+      result: this.state.result,
+      pricePerPerson: this.state.pricePerPerson,
+      addressList: this.state.addressList,
+    };
   }
 
   render() {
@@ -186,7 +202,10 @@ class App extends Component {
               {this.state.result} / {this.state.participants}
             </div>
           </div>
-          <SharingLinks formState={this.state} i18n={this.state.i18n} />
+          <SharingLinks
+            formState={this.createFormState()}
+            i18n={this.state.i18n}
+          />
         </div>
 
         <footer className="footer">
