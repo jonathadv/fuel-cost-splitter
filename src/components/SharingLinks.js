@@ -40,7 +40,7 @@ class SharingLinks extends Component {
     render() {
         return (
             <div className="container text-center p-3">
-                <div className="btn-group">
+                <div className="p-1">
                     <a
                         href={'whatsapp://send?text=' + this.generateSharingText('whatsapp')}
                         data-action="share/whatsapp/share"
@@ -48,7 +48,9 @@ class SharingLinks extends Component {
                     >
                         {this.props.i18n.labels.sendViaWhatsApp}
                     </a>
+                </div>
 
+                <div className="p-1">
                     <a
                         href={'fb-messenger://share/?link=' + this.generateSharingText()}
                         className="btn btn-outline-primary"
