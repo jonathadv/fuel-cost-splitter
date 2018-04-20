@@ -8,7 +8,7 @@ class CustomInput extends Component {
     };
 
     generateInput = type => {
-        const className = 'form-control';
+        const className = 'form-control text-center';
 
         if (type === 'step') {
             const min = this.props.min ? this.props.min : '0';
