@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import CustomInput from './components/CustomInput.js';
-import MapSearch from './components/MapSearch.js';
+import browserLocale from 'browser-locale';
+import CustomInput from './components/CustomInput';
+import MapSearch from './components/MapSearch';
+import SharingLinks from './components/SharingLinks';
+import i18n from './i18n';
 import './App.css';
 
 class App extends Component {
@@ -8,12 +11,14 @@ class App extends Component {
     super(props);
 
     this.state = {
+      i18n: i18n(browserLocale()),
       pathLength: 0,
       gasConsumption: 0,
       gasPrice: 0,
       participants: 0,
       result: 0,
       pricePerPerson: 0,
+      addressList: [],
     };
 
     this.updateCarPath = value => {
@@ -33,87 +38,159 @@ class App extends Component {
     };
 
     this.updateResult = () => {
+      const asNumber = value => {
+        const strNumber = value.toString();
+        if (strNumber.indexOf(',') > -1) {
+          return Number(strNumber.replace(',', '.'));
+        }
+        return Number(value);
+      };
+
+      const asCurrency = value => {
+        const strNumber = value.toString();
+        return strNumber.replace('.', this.state.i18n.math.decimalSeparator);
+      };
+
       const { pathLength, gasConsumption, gasPrice, participants } = this.state;
 
-      const result = parseFloat(pathLength / gasConsumption * gasPrice).toFixed(
-        2
-      );
+      const result = parseFloat(
+        pathLength / gasConsumption * asNumber(gasPrice)
+      ).toFixed(2);
 
       const pricePerPerson = parseFloat(result / participants).toFixed(2);
 
       this.setState({
-        result,
-        pricePerPerson,
+        result: asCurrency(result),
+        pricePerPerson: asCurrency(pricePerPerson),
       });
 
       window.scrollTo(0, document.body.scrollHeight);
     };
   }
 
+  changeLang(e) {
+    const newLangCode = e.nativeEvent.target.id;
+    this.setState({
+      i18n: i18n(newLangCode),
+    });
+  }
+
+  renderMenu() {
+    return (
+      <ul className="nav nav-tabs">
+        <li className="nav-item dropdown">
+          <button
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Idioma
+          </button>
+          <div className="dropdown-menu">
+            <button
+              className="dropdown-item"
+              id="pt"
+              onClick={this.changeLang.bind(this)}
+            >
+              Português
+            </button>
+            <button
+              className="dropdown-item"
+              id="en"
+              onClick={this.changeLang.bind(this)}
+            >
+              English
+            </button>
+          </div>
+        </li>
+        <li className="nav-item">
+          <span className="nav-link disabled">
+            {this.state.i18n.langName}
+          </span>
+        </li>
+      </ul>
+    );
+  }
+
   render() {
     return (
-      <div className="App">
-        <header id="header" className="App-header">
-          <h1 className="App-title">Fuel Cost Splitter</h1>
-        </header>
+      <div className="container">
+        {this.renderMenu()}
+        <MapSearch
+          i18n={this.state.i18n}
+          setDistanceCb={this.updateCarPath.bind(this)}
+          addressList={this.state.addressList}
+        />
 
-        <MapSearch setDistanceCb={this.updateCarPath.bind(this)} />
-        <div className="AppBody">
+        <div className="form-group">
           <CustomInput
-            name="Distância Total"
-            unit="Km"
+            name={this.state.i18n.labels.totalDistance}
+            unit={this.state.i18n.labels.km}
             type="step"
             step="0.01"
+            i18n={this.state.i18n}
             value={this.state.pathLength}
             cb={this.updateCarPath}
           />
           <CustomInput
-            name="Consumo do veículo"
-            unit="Km/L"
+            name={this.state.i18n.labels.vehicleConsumption}
+            unit={this.state.i18n.labels.kmByLiter}
+            i18n={this.state.i18n}
             type="step"
             cb={this.updateGasConsumption}
           />
           <CustomInput
-            name="Preço da gasolina"
-            unit="R$"
+            name={this.state.i18n.labels.fuelPrice}
+            unit={this.state.i18n.labels.currency}
             type="currency"
             value={this.state.gasPrice}
+            i18n={this.state.i18n}
             cb={this.updateGasPrice}
           />
           <CustomInput
-            name="Quantidade de Participantes"
+            name={this.state.i18n.labels.peopleToSplit}
             type="step"
+            i18n={this.state.i18n}
             cb={this.updateParticipants}
           />
-          <p>
+          <p className="text-center">
             <input
-              className="button"
+              className="btn btn-outline-primary"
               type="button"
-              value="Calcular"
+              value={this.state.i18n.labels.calculate}
               onClick={this.updateResult}
             />
           </p>
 
-          <div className="CostBox">
-            <div className="CostTitle">Valor total</div>
-            <div className="Cost">R$ {this.state.result}</div>
+          <div className="text-center">
+            <div className="CostTitle">{this.state.i18n.labels.totalCost}</div>
+            <div className="Cost">
+              {this.state.i18n.labels.currency} {this.state.result}
+            </div>
             <div className="Calc">
               ( {this.state.pathLength} / {this.state.gasConsumption} ) x{' '}
               {this.state.gasPrice}{' '}
             </div>
           </div>
 
-          <div className="CostBox">
-            <div className="CostTitle">Por pessoa</div>
-            <div className="Cost">R$ {this.state.pricePerPerson}</div>
+          <div className="text-center">
+            <div className="CostTitle">
+              {this.state.i18n.labels.costPerPerson}
+            </div>
+            <div className="Cost">
+              {this.state.i18n.labels.currency} {this.state.pricePerPerson}
+            </div>
             <div className="Calc">
               {this.state.result} / {this.state.participants}
             </div>
           </div>
+          <SharingLinks formState={this.state} i18n={this.state.i18n} />
         </div>
 
         <footer className="footer">
-          <p>Fuel Cost Splitter</p>
+          <p>Fuel Cost Splitter - BETA</p>
           <p>A simple webapp to split the fuel cost with friends</p>
 
           <p>

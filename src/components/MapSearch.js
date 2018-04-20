@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import AddressBox from './AddressBox';
+import PropTypes from 'prop-types';
+import AddressList from './AddressList';
 import GoogleMaps from '../integration/GoogleMaps';
 
 class MapSearch extends Component {
@@ -7,19 +8,13 @@ class MapSearch extends Component {
     super(props);
 
     this.state = {
-      addressList: [],
+      addressList: this.props.addressList,
       submitElementId: 'submit',
     };
   }
 
   setDistance(distance) {
     this.props.setDistanceCb(distance);
-  }
-
-  onLoadMap() {
-    setTimeout(() => {
-      document.getElementById('header').hidden = true;
-    }, 3000);
   }
 
   render() {
@@ -31,16 +26,23 @@ class MapSearch extends Component {
           submitElementId={this.state.submitElementId}
           onLoad={this.onLoadMap}
         />
-        <AddressBox addressList={this.state.addressList} />
+        <AddressList
+          i18n={this.props.i18n}
+          addressList={this.state.addressList}
+        />
         <input
-          className="CalcDistanceButton"
+          className="btn btn-outline-primary"
           type="submit"
           id={this.state.submitElementId}
-          value="Calcular Distância"
+          value={this.props.i18n.labels.calculateDistance}
         />
       </div>
     );
   }
 }
+
+MapSearch.propTypes = {
+  i18n: PropTypes.object.isRequired,
+};
 
 export default MapSearch;

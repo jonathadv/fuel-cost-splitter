@@ -110,7 +110,7 @@ class GoogleMaps extends Component {
   loadApiLibrary() {
     const apiKey = process.env.REACT_APP_API_KEY;
     const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key={apiKey}&callback=initMap'.replace(
+    script.src = 'https://maps.googleapis.com/maps/api/js?key={apiKey}&libraries=visualization,places&callback=initMap'.replace(
       '{apiKey}',
       apiKey
     );

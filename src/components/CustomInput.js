@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CurrencyInput from 'react-currency-input';
 
 class CustomInput extends Component {
@@ -7,6 +8,8 @@ class CustomInput extends Component {
   };
 
   generateInput = type => {
+    const className = 'form-control';
+
     if (type === 'step') {
       const min = this.props.min ? this.props.min : '0';
       const max = this.props.max ? this.props.max : '100';
@@ -15,6 +18,7 @@ class CustomInput extends Component {
 
       return (
         <input
+          className={className}
           placeholder="0"
           type="number"
           min={min}
@@ -29,6 +33,9 @@ class CustomInput extends Component {
     if (type === 'currency') {
       return (
         <CurrencyInput
+          className={className}
+          decimalSeparator={this.props.i18n.math.decimalSeparator}
+          thousandSeparator={this.props.i18n.math.thousandSeparator}
           value={this.props.value}
           inputType="tel"
           onChangeEvent={this.updateValue}
@@ -36,7 +43,14 @@ class CustomInput extends Component {
       );
     }
 
-    return <input placeholder="" type={type} onChange={this.updateValue} />;
+    return (
+      <input
+        className={className}
+        placeholder=""
+        type={type}
+        onChange={this.updateValue}
+      />
+    );
   };
 
   render() {
@@ -45,12 +59,16 @@ class CustomInput extends Component {
     const type = this.props.type ? this.props.type : 'text';
 
     return (
-      <div className="CalcInput">
-        {name + unit}
+      <div className="form-group">
+        <label>{name + unit}</label>
         {this.generateInput(type)}
       </div>
     );
   }
 }
+
+CustomInput.propTypes = {
+  i18n: PropTypes.object.isRequired,
+};
 
 export default CustomInput;
