@@ -81,7 +81,7 @@ class AddressList extends Component {
         this.state.addressList.forEach((address, index) => {
             tags.push(
                 <div key={address.hash}>
-                    <div className="input-group" data-toggle="buttons">
+                    <div className="input-group p-1" data-toggle="buttons">
                         <input
                             id={index}
                             placeholder={getAddressPlaceholder(index)}

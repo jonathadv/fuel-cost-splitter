@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class SharingLinks extends Component {
-    getAddresses() {
+    getAddresses = () => {
         const addresses = [];
         this.props.formState.addressList.forEach(addr => {
             addresses.push('• ' + addr.value);
         });
         return addresses.join('\n');
-    }
+    };
 
-    generateWhatsAppText() {
-        const text = this.props.i18n.messages.whatsAppSharing
+    generateSharingText = appName => {
+        const monospaceMark = appName === 'whatsapp' ? '```' : '`';
+
+        const text = this.props.i18n.messages.appSharingText
+            .replace(/`/g, monospaceMark)
             .replace(/{addresses}/g, this.getAddresses())
             .replace(/{distance}/g, this.props.formState.pathLength + this.props.i18n.labels.km)
             .replace(
@@ -29,23 +32,30 @@ class SharingLinks extends Component {
                 this.props.i18n.labels.currency + this.props.formState.pricePerPerson
             )
             .replace(/{url}/g, process.env.PUBLIC_URL);
+        console.log(text);
 
         return encodeURIComponent(text);
-    }
+    };
 
     render() {
         return (
-            <div className="container">
-                <p className="text-center">
+            <div className="container text-center p-3">
+                <div className="btn-group">
                     <a
-                        href={'whatsapp://send?text=' + this.generateWhatsAppText()}
+                        href={'whatsapp://send?text=' + this.generateSharingText('whatsapp')}
                         data-action="share/whatsapp/share"
+                        className="btn btn-outline-success"
                     >
-                        <button type="button" className="btn btn-outline-success">
-                            {this.props.i18n.messages.sendViaWhatsApp}
-                        </button>
+                        {this.props.i18n.labels.sendViaWhatsApp}
                     </a>
-                </p>
+
+                    <a
+                        href={'fb-messenger://share/?link=' + this.generateSharingText()}
+                        className="btn btn-outline-primary"
+                    >
+                        {this.props.i18n.labels.sendViaFbMessenger}
+                    </a>
+                </div>
             </div>
         );
     }
