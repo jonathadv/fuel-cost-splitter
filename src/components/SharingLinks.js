@@ -10,8 +10,8 @@ class SharingLinks extends Component {
     return addresses.join('\n');
   }
 
-  generateSharingText() {
-    const sharing = this.props.i18n.messages.sharing
+  generateWhatsAppText() {
+    const text = this.props.i18n.messages.whatsAppSharing
       .replace(/{addresses}/g, this.getAddresses())
       .replace(
         /{distance}/g,
@@ -36,7 +36,9 @@ class SharingLinks extends Component {
       )
       .replace(/{url}/g, process.env.PUBLIC_URL);
 
-    return encodeURIComponent(sharing);
+    console.log(text);
+
+    return encodeURIComponent(text);
   }
 
   render() {
@@ -44,11 +46,11 @@ class SharingLinks extends Component {
       <div className="container">
         <p className="text-center">
           <a
-            href={'whatsapp://send?text=' + this.generateSharingText()}
+            href={'whatsapp://send?text=' + this.generateWhatsAppText()}
             data-action="share/whatsapp/share"
           >
             <button type="button" className="btn btn-outline-success">
-              {this.props.i18n.messages.whatsapp}
+              {this.props.i18n.messages.sendViaWhatsApp}
             </button>
           </a>
         </p>

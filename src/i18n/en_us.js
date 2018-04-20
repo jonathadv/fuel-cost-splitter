@@ -16,7 +16,7 @@ module.exports = {
     currency: '$',
     kmByLiter: 'Km/L',
     km: 'Km',
-    reportIssue: 'Reportar Problema',
+    reportIssue: 'Report an Issue',
   },
 
   math: {
@@ -25,8 +25,8 @@ module.exports = {
   },
 
   messages: {
-    whatsapp: 'Send via WhatsApp',
-    sharing:
-      'Hey,\nFollowing our trip fuel cost sharing:\n\n*Addresses:*\n{addresses}\n----------\n\n-Distance: {distance}\n-Fuel price: {fuelPrice}\n-Vehicle Consumption: {vehicleConsumption}\n-Participants: {participants}\n-Total: {total} \n-Per Person: {perPerson}\n\n*Total Cost Formula:*\n```( {distance} / {vehicleConsumption} ) x {fuelPrice}```\n*Splitting Formula:*\n ```{total} / {participants} = {perPerson}```\n\nPowered by: {url}',
+    sendViaWhatsApp: 'Send via WhatsApp',
+    whatsAppSharing:
+      'Hey,\nFollowing our trip fuel cost sharing:\n\n*Addresses:*\n{addresses}\n----------\n\n-Distance: {distance}\n-Fuel price: {fuelPrice}\n-Vehicle Consumption: {vehicleConsumption}\n-Participants: {participants}\n-Total: {total} \n-Per Person: {perPerson}\n\n*Total Cost Formula:*\n```({distance}÷{vehicleConsumption})x{fuelPrice}```\n*Splitting Formula:*\n ```{total}÷{participants}={perPerson}```\n\nPowered by: {url}',
   },
 };
