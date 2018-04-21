@@ -9,6 +9,7 @@ Progressive Web App to split the trip fuel costs with friends by getting the dis
 ## Overview
 
 * Created using [create-react-app](https://github.com/facebook/create-react-app).
+* Front-end components using [Bootstrap](https://getbootstrap.com/).
 * Uses [Places](https://developers.google.com/maps/documentation/javascript/places) and [Autocomplete for Addresses and Search Terms ](https://developers.google.com/maps/documentation/javascript/places-autocomplete) libraries from [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/).
 * [Google Analytics](https://www.google.com/analytics/) supported.
 * i18n (pt-br and en-us).
