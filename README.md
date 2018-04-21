@@ -12,7 +12,7 @@ Progressive Web App to split the trip fuel costs with friends by getting the dis
 * Uses [Places](https://developers.google.com/maps/documentation/javascript/places) and [Autocomplete for Addresses and Search Terms ](https://developers.google.com/maps/documentation/javascript/places-autocomplete) libraries from [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/).
 * [Google Analytics](https://www.google.com/analytics/) supported.
 * i18n (pt-br and en-us).
-* Share the output via WhatsApp.
+* Share the output via WhatsApp and Facebook Messenger.
 
 ## Development 
 ### Obtaining a Google API Key
