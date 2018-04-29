@@ -24,6 +24,7 @@ class MapSearch extends Component {
                     addressList={this.state.addressList}
                     setDistanceCb={this.setDistance.bind(this)}
                     submitElementId={this.state.submitElementId}
+                    i18n={this.props.i18n}
                     onLoad={this.onLoadMap}
                 />
                 <AddressList i18n={this.props.i18n} addressList={this.state.addressList} />

@@ -53,7 +53,7 @@ class GoogleMaps extends Component {
             const destination = addressList.splice(addressList.length - 1, 1)[0];
 
             if (!origin.value || !destination.value) {
-                alert('Please add at least origin and destination addresses.');
+                alert(this.props.i18n.messages.originDestinationWarning);
                 return;
             }
 
@@ -89,7 +89,12 @@ class GoogleMaps extends Component {
 
                         this.props.setDistanceCb(Number(totalDistance / 1000));
                     } else {
-                        window.alert('Directions request failed due to ' + status);
+                        window.alert(
+                            this.props.i18n.messages.googleDirectionsError.replace(
+                                '{error}',
+                                status
+                            )
+                        );
                     }
                 }
             );
@@ -138,6 +143,7 @@ GoogleMaps.propTypes = {
     addressList: PropTypes.array.isRequired,
     setDistanceCb: PropTypes.func.isRequired,
     submitElementId: PropTypes.string.isRequired,
+    i18n: PropTypes.object.isRequired,
 };
 
 GoogleMaps.defaultProps = {

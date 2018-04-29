@@ -32,7 +32,6 @@ class SharingLinks extends Component {
                 this.props.i18n.labels.currency + this.props.formState.pricePerPerson
             )
             .replace(/{url}/g, process.env.PUBLIC_URL);
-        console.log(text);
 
         return encodeURIComponent(text);
     };

@@ -14,12 +14,17 @@ class AddressList extends Component {
         };
     }
 
-    addAddress(e) {
+    addAddress = e => {
         const addressList = this.state.addressList;
         const newItemIndex = Number(e.nativeEvent.target.id) + 1;
 
         if (addressList.length === this.state.maxAddressAmount) {
-            alert('Addresses limited to ', this.state.maxAddressAmount);
+            alert(
+                this.props.i18n.messages.addressesLimit.replace(
+                    '{limit}',
+                    this.state.maxAddressAmount
+                )
+            );
             return;
         }
 
@@ -32,9 +37,9 @@ class AddressList extends Component {
         this.setState({
             addressList,
         });
-    }
+    };
 
-    removeAddress(e) {
+    removeAddress = e => {
         const addressList = this.state.addressList;
         const currentIndex = Number(e.nativeEvent.target.id);
 
@@ -51,22 +56,22 @@ class AddressList extends Component {
         this.setState({
             addressList,
         });
-    }
+    };
 
-    setAddress(index, value) {
+    setAddress = (index, value) => {
         const addressList = this.state.addressList;
         addressList[index].value = value;
         this.setState(addressList);
-    }
+    };
 
-    inputOnblur(e) {
+    inputOnblur = e => {
         const addressList = this.state.addressList;
         const currentItem = e.nativeEvent.target;
         addressList[currentItem.id].value = currentItem.value;
         this.setState(addressList);
-    }
+    };
 
-    renderAddresses() {
+    renderAddresses = () => {
         const tags = [];
         const getAddressPlaceholder = index => {
             if (index === 0) {
@@ -87,14 +92,14 @@ class AddressList extends Component {
                             placeholder={getAddressPlaceholder(index)}
                             defaultValue={address.value}
                             className="form-control"
-                            onBlur={this.inputOnblur.bind(this)}
+                            onBlur={this.inputOnblur}
                         />
 
                         <div className="btn-group" data-toggle="buttons">
                             <button
                                 className="btn btn-outline-danger"
                                 id={index}
-                                onClick={this.removeAddress.bind(this)}
+                                onClick={this.removeAddress}
                             >
                                 {' '}
                                 -{' '}
@@ -102,7 +107,7 @@ class AddressList extends Component {
                             <button
                                 className="btn btn-outline-secondary"
                                 id={index}
-                                onClick={this.addAddress.bind(this)}
+                                onClick={this.addAddress}
                             >
                                 {' '}
                                 +{' '}
@@ -113,12 +118,12 @@ class AddressList extends Component {
             );
         });
         return tags;
-    }
+    };
 
     // Based on Google Places Autocomplition documentation
     // https://developers.google.com/maps/documentation/javascript/places-autocomplete
     // This code expects that Google Libraries are already loaded.
-    registerInputTextToAutocomplete() {
+    registerInputTextToAutocomplete = () => {
         this.state.addressList.forEach((input, index) => {
             const autocomplete = new window.google.maps.places.Autocomplete(
                 document.getElementById(index),
@@ -130,11 +135,11 @@ class AddressList extends Component {
                 this.setAddress(index, place.formatted_address);
             });
         });
-    }
+    };
 
-    loadGoogleAutocompleteLibrary(attempt) {
-        if (attempt >= 10) {
-            alert('Error Loading Google API. Try to reload page.');
+    loadGoogleAutocompleteLibrary = attempt => {
+        if (attempt >= 60) {
+            alert(this.props.i18n.messages.googleApiLoadError);
             return;
         }
         if (!window.google) {
@@ -142,19 +147,19 @@ class AddressList extends Component {
         } else {
             return this.registerInputTextToAutocomplete();
         }
-    }
+    };
 
-    componentWillMount() {
+    componentWillMount = () => {
         return this.loadGoogleAutocompleteLibrary(1);
-    }
+    };
 
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         this.registerInputTextToAutocomplete();
-    }
+    };
 
-    render() {
+    render = () => {
         return <div className="form-group">{this.renderAddresses()}</div>;
-    }
+    };
 }
 
 AddressList.propTypes = {
