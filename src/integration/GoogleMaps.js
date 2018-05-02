@@ -128,8 +128,8 @@ class GoogleMaps extends Component {
 
     render() {
         return (
-            <div id="MapWrapper" className="MapWrapper">
-                <div className="map" id="map" />
+            <div id="MapWrapper" className="app-map">
+                <div id="map" className="h-100 w-100" />
             </div>
         );
     }

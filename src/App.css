@@ -1,37 +1,17 @@
-.CostBox {
-  padding: 10px;
-}
-
-.CostTitle {
+.app-result {
   font-size: 1.5em;
   padding: 1px;
-}
-
-.Cost {
-  font-size: 1.5em;
-  padding: 1px;
-  color: red;
   font-weight: bold;
 }
 
-.Calc {
+.app-monospaced {
   font-family: monospace;
-  padding: 1px;
-  color: gray;
 }
 
-.MapSearchBox {
+.app-align-center {
     text-align: center;
  }
 
-.MapWrapper {
-    display: block;
+.app-map {
     height: 200px;
 }
-
-.map {
-    height: 100%;
-    width: 100%;
-}
-
-
