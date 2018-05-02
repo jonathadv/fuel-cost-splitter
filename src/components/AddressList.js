@@ -72,45 +72,47 @@ class AddressList extends Component {
     };
 
     renderAddresses = () => {
+        const { i18n } = this.props;
         const tags = [];
+
         const getAddressPlaceholder = index => {
             if (index === 0) {
-                return this.props.i18n.labels.origin;
+                return i18n.labels.origin;
             } else if (index === this.state.addressList.length - 1) {
-                return this.props.i18n.labels.destination;
+                return i18n.labels.destination;
             } else {
-                return this.props.i18n.labels.stopPoint;
+                return i18n.labels.stopPoint;
             }
         };
 
         this.state.addressList.forEach((address, index) => {
             tags.push(
                 <div key={address.hash}>
-                    <div className="input-group p-1" data-toggle="buttons">
-                        <input
-                            id={index}
-                            placeholder={getAddressPlaceholder(index)}
-                            defaultValue={address.value}
-                            className="form-control"
-                            onBlur={this.inputOnblur}
-                        />
-
-                        <div className="btn-group" data-toggle="buttons">
+                    <div className="input-group mb-3 p-1" data-toggle="buttons">
+                        <div className="input-group-prepend">
                             <button
                                 className="btn btn-outline-danger"
                                 id={index}
                                 onClick={this.removeAddress}
                             >
-                                {' '}
-                                -{' '}
+                                -
                             </button>
+                        </div>
+                        <input
+                            id={index}
+                            placeholder={getAddressPlaceholder(index)}
+                            defaultValue={address.value}
+                            className={'form-control text-center address-input-' + index}
+                            onBlur={this.inputOnblur}
+                        />
+
+                        <div className="input-group-append">
                             <button
                                 className="btn btn-outline-secondary"
                                 id={index}
                                 onClick={this.addAddress}
                             >
-                                {' '}
-                                +{' '}
+                                +
                             </button>
                         </div>
                     </div>
@@ -126,7 +128,7 @@ class AddressList extends Component {
     registerInputTextToAutocomplete = () => {
         this.state.addressList.forEach((input, index) => {
             const autocomplete = new window.google.maps.places.Autocomplete(
-                document.getElementById(index),
+                document.getElementsByClassName('address-input-' + index)[0],
                 { types: [] }
             );
 
@@ -158,7 +160,7 @@ class AddressList extends Component {
     };
 
     render = () => {
-        return <div className="form-group">{this.renderAddresses()}</div>;
+        return <div className="form-group p-2">{this.renderAddresses()}</div>;
     };
 }
 
