@@ -12,10 +12,11 @@ class Form extends Component {
                     name={i18n.labels.totalDistance}
                     unit={i18n.labels.km}
                     type="step"
-                    step="0.01"
+                    step="0.001"
                     i18n={i18n}
                     value={this.props.formState.pathLength}
                     cb={this.props.updateCarPathFn}
+                    lang=""
                 />
                 <CustomInput
                     name={i18n.labels.vehicleConsumption}

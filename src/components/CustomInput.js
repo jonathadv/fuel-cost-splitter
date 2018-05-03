@@ -9,12 +9,12 @@ class CustomInput extends Component {
 
     generateInput = type => {
         const className = 'form-control text-center';
+        const { value, lang } = this.props;
 
         if (type === 'step') {
             const min = this.props.min ? this.props.min : '0';
             const max = this.props.max ? this.props.max : '100';
             const step = this.props.step ? this.props.step : '1';
-            const value = this.props.value;
 
             return (
                 <input
@@ -25,6 +25,7 @@ class CustomInput extends Component {
                     max={max}
                     step={step}
                     value={value}
+                    lang={lang}
                     onChange={this.updateValue}
                 />
             );
@@ -36,8 +37,9 @@ class CustomInput extends Component {
                     className={className}
                     decimalSeparator={this.props.i18n.math.decimalSeparator}
                     thousandSeparator={this.props.i18n.math.thousandSeparator}
-                    value={this.props.value}
+                    value={value}
                     inputType="tel"
+                    lang={lang}
                     onChangeEvent={this.updateValue}
                 />
             );
@@ -64,6 +66,11 @@ class CustomInput extends Component {
 
 CustomInput.propTypes = {
     i18n: PropTypes.object.isRequired,
+    min: PropTypes.string,
+    max: PropTypes.string,
+    step: PropTypes.string,
+    lang: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default CustomInput;
