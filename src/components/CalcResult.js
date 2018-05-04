@@ -9,9 +9,9 @@ class CalcResult extends Component {
             <div className={className}>
                 <div className="text-center">
                     <h1 className="h1">{i18n.labels.totalCost}</h1>
-                    <div className="text-danger app-result">
+                    <span className="h2 text-danger font-weight-bold">
                         {i18n.labels.currency} {formState.result}
-                    </div>
+                    </span>
                     <div className="text-muted app-monospaced">
                         ( {formState.pathLength} / {formState.gasConsumption} ) x{' '}
                         {formState.gasPrice}{' '}
@@ -20,9 +20,9 @@ class CalcResult extends Component {
 
                 <div className="text-center">
                     <h1 className="h1">{i18n.labels.costPerPerson}</h1>
-                    <div className="text-danger app-result">
+                    <span className="h2 text-danger font-weight-bold">
                         {i18n.labels.currency} {formState.pricePerPerson}
-                    </div>
+                    </span>
                     <div className="text-muted app-monospaced">
                         {formState.result} / {formState.participants}
                     </div>
