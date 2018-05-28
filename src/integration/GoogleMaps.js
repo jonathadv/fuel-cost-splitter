@@ -7,6 +7,7 @@ class GoogleMaps extends Component {
         this.state = {
             initLat: this.props.initLat,
             initLng: this.props.initLng,
+            zoom: 6
         };
     }
 
@@ -17,6 +18,7 @@ class GoogleMaps extends Component {
                     this.setState({
                         initLat: position.coords.latitude,
                         initLng: position.coords.longitude,
+                        zoom: 17
                     });
 
                     return callback();
@@ -33,12 +35,15 @@ class GoogleMaps extends Component {
     // `window` reference so they can be called globaly by Maps API.
     setGoogleObjectsToWindow() {
         window.initMap = () => {
+            const position =  { lat: this.state.initLat, lng: this.state.initLng };
             const directionsService = new window.google.maps.DirectionsService();
             const directionsDisplay = new window.google.maps.DirectionsRenderer();
             const map = new window.google.maps.Map(document.getElementById('map'), {
-                zoom: 6,
-                center: { lat: this.state.initLat, lng: this.state.initLng },
+                zoom: this.state.zoom,
+                center: position,
             });
+            const marker = new window.google.maps.Marker({position, map});
+
             directionsDisplay.setMap(map);
 
             document.getElementById(this.props.submitElementId).addEventListener('click', e => {
