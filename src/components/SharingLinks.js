@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { asDistance } from '../numbertools';
 
 class SharingLinks extends Component {
     getAddresses = () => {
@@ -12,24 +13,25 @@ class SharingLinks extends Component {
 
     generateSharingText = appName => {
         const monospaceMark = appName === 'whatsapp' ? '```' : '`';
+        const { i18n } = this.props;
 
-        const text = this.props.i18n.messages.appSharingText
+        const text = i18n.messages.appSharingText
             .replace(/`/g, monospaceMark)
             .replace(/{addresses}/g, this.getAddresses())
-            .replace(/{distance}/g, this.props.formState.pathLength + this.props.i18n.labels.km)
+            .replace(/{distance}/g, asDistance(this.props.formState.pathLength, i18n) + i18n.labels.km)
             .replace(
                 /{fuelPrice}/g,
-                this.props.i18n.labels.currency + this.props.formState.gasPrice
+                i18n.labels.currency + this.props.formState.gasPrice
             )
             .replace(
                 /{vehicleConsumption}/g,
-                this.props.formState.gasConsumption + this.props.i18n.labels.kmByLiter
+                this.props.formState.gasConsumption + i18n.labels.kmByLiter
             )
             .replace(/{participants}/g, this.props.formState.participants)
-            .replace(/{total}/g, this.props.i18n.labels.currency + this.props.formState.result)
+            .replace(/{total}/g, i18n.labels.currency + this.props.formState.result)
             .replace(
                 /{perPerson}/g,
-                this.props.i18n.labels.currency + this.props.formState.pricePerPerson
+                i18n.labels.currency + this.props.formState.pricePerPerson
             )
             .replace(/{url}/g, process.env.PUBLIC_URL);
 
@@ -37,6 +39,8 @@ class SharingLinks extends Component {
     };
 
     render() {
+        const { i18n } = this.props;
+
         return (
             <div className="container text-center p-3">
                 <div className="p-1">
@@ -45,7 +49,7 @@ class SharingLinks extends Component {
                         data-action="share/whatsapp/share"
                         className="btn btn-outline-success"
                     >
-                        {this.props.i18n.labels.sendViaWhatsApp}
+                        {i18n.labels.sendViaWhatsApp}
                     </a>
                 </div>
 
@@ -54,7 +58,7 @@ class SharingLinks extends Component {
                         href={'fb-messenger://share/?link=' + this.generateSharingText()}
                         className="btn btn-outline-primary"
                     >
-                        {this.props.i18n.labels.sendViaFbMessenger}
+                        {i18n.labels.sendViaFbMessenger}
                     </a>
                 </div>
             </div>

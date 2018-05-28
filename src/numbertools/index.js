@@ -6,9 +6,18 @@ const asNumber = value => {
     return Number(value);
 };
 
-const asCurrency = (value, decimalSeparator) => {
+const asDistance = (value, i18n) => {
+    let strNumber = value.toString();
+    if (strNumber.indexOf('.') > -1) {
+        strNumber =  strNumber.replace('.', i18n.math.decimalSeparator);
+    }
+    return strNumber;
+};
+
+
+const asCurrency = (value, i18n) => {
     const strNumber = value.toString();
-    return strNumber.replace('.', decimalSeparator);
+    return strNumber.replace('.', i18n.math.decimalSeparator);
 };
 
 const gtZero = value => {
@@ -17,6 +26,7 @@ const gtZero = value => {
 
 module.exports = {
     asNumber,
+    asDistance,
     asCurrency,
     gtZero
 }

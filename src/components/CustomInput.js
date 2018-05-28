@@ -9,7 +9,7 @@ class CustomInput extends Component {
 
     generateInput = type => {
         const className = 'form-control text-center';
-        const { value, lang } = this.props;
+        const { value, lang, i18n } = this.props;
 
         if (type === 'step') {
             const min = this.props.min ? this.props.min : '0';
@@ -35,8 +35,8 @@ class CustomInput extends Component {
             return (
                 <CurrencyInput
                     className={className}
-                    decimalSeparator={this.props.i18n.math.decimalSeparator}
-                    thousandSeparator={this.props.i18n.math.thousandSeparator}
+                    decimalSeparator={i18n.math.decimalSeparator}
+                    thousandSeparator={i18n.math.thousandSeparator}
                     value={value}
                     inputType="tel"
                     lang={lang}

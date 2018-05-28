@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { asDistance } from '../numbertools';
 class CalcResult extends Component {
     render() {
         const { i18n, formState, className } = this.props;
@@ -13,7 +13,7 @@ class CalcResult extends Component {
                         {i18n.labels.currency} {formState.result}
                     </span>
                     <div className="text-muted app-monospaced">
-                        ( {formState.pathLength} / {formState.gasConsumption} ) x{' '}
+                        ( {asDistance(formState.pathLength, i18n)} / {formState.gasConsumption} ) x{' '}
                         {formState.gasPrice}{' '}
                     </div>
                 </div>

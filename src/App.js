@@ -43,7 +43,6 @@ class App extends Component {
 
     updateResult = () => {
         const { pathLength, gasConsumption, gasPrice, participants, i18n } = this.state;
-        const { decimalSeparator } =  i18n.math;
 
         if (!gtZero(pathLength) || !gtZero(gasConsumption) || !gtZero(gasPrice) || !gtZero(participants)){
             alert(i18n.messages.fillAllFields);
@@ -54,8 +53,8 @@ class App extends Component {
         const pricePerPerson = parseFloat(result / participants).toFixed(2);
 
         this.setState({
-            result: asCurrency(result, decimalSeparator),
-            pricePerPerson: asCurrency(pricePerPerson, decimalSeparator),
+            result: asCurrency(result, i18n),
+            pricePerPerson: asCurrency(pricePerPerson, i18n),
         });
 
         window.scrollTo(0, document.body.scrollHeight);
