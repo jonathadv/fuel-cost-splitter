@@ -6,6 +6,7 @@ import Form from './components/Form';
 import Menu from './components/Menu';
 import CalcResult from './components/CalcResult';
 import i18n from './i18n';
+import { asNumber, asCurrency, gtZero } from './numbertools'
 import './App.css';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             addressList: [],
         };
     }
+
     updateCarPath = value => {
         this.setState({ pathLength: value });
     };
@@ -40,28 +42,20 @@ class App extends Component {
     };
 
     updateResult = () => {
-        const asNumber = value => {
-            const strNumber = value.toString();
-            if (strNumber.indexOf(',') > -1) {
-                return Number(strNumber.replace(',', '.'));
-            }
-            return Number(value);
-        };
+        const { pathLength, gasConsumption, gasPrice, participants, i18n } = this.state;
+        const { decimalSeparator } =  i18n.math;
 
-        const asCurrency = value => {
-            const strNumber = value.toString();
-            return strNumber.replace('.', this.state.i18n.math.decimalSeparator);
-        };
-
-        const { pathLength, gasConsumption, gasPrice, participants } = this.state;
+        if (!gtZero(pathLength) || !gtZero(gasConsumption) || !gtZero(gasPrice) || !gtZero(participants)){
+            alert(i18n.messages.fillAllFields);
+            return;
+        }
 
         const result = parseFloat(pathLength / gasConsumption * asNumber(gasPrice)).toFixed(2);
-
         const pricePerPerson = parseFloat(result / participants).toFixed(2);
 
         this.setState({
-            result: asCurrency(result),
-            pricePerPerson: asCurrency(pricePerPerson),
+            result: asCurrency(result, decimalSeparator),
+            pricePerPerson: asCurrency(pricePerPerson, decimalSeparator),
         });
 
         window.scrollTo(0, document.body.scrollHeight);

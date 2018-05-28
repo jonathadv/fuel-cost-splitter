@@ -36,6 +36,7 @@ module.exports = {
         googleDirectionsError: 'Request to Google Maps Directions failed due to {error}',
         addressesLimit: 'Addresses limited to {limit}.',
         originDestinationWarning: 'Please add at least origin and destination addresses.',
+        fillAllFields: 'Please fill in all fields with values greater than zero.',
     },
     urls: {
         about: 'https://github.com/jonathadv/fuel-cost-splitter',

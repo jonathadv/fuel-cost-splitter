@@ -1,7 +1,6 @@
 module.exports = {
     langCode: 'pt-br',
     langName: 'Português',
-
     labels: {
         origin: 'Origem',
         destination: 'Destino',
@@ -36,6 +35,7 @@ module.exports = {
         googleDirectionsError: 'Solicitação ao Google Maps Directions falhou devido a {error}',
         addressesLimit: 'Endereços são limitados a {limit}.',
         originDestinationWarning: ' Por favor adicione pelo menos o endereço de origem e destino.',
+        fillAllFields: 'Por favor, preencha todos os campos com valores maiores que zero.',
     },
 
     urls: {
