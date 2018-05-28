@@ -25,8 +25,8 @@ module.exports = {
     },
 
     math: {
-        decimalSeparator: ',',
-        thousandSeparator: '.',
+        decimalSeparator: '.',
+        thousandSeparator: ',',
     },
 
     messages: {
