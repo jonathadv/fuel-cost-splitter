@@ -160,7 +160,7 @@ class AddressList extends Component {
     };
 
     render = () => {
-        return <div className="form-group p-2">{this.renderAddresses()}</div>;
+        return <div className="form-group p-1">{this.renderAddresses()}</div>;
     };
 }
 
