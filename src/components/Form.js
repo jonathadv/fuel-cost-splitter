@@ -13,7 +13,7 @@ class Form extends Component {
                     unit={i18n.labels.km}
                     type="step"
                     step="0.001"
-                    max='1000'
+                    max="1000"
                     i18n={i18n}
                     value={this.props.formState.pathLength}
                     cb={this.props.updateCarPathFn}

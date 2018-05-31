@@ -18,21 +18,18 @@ class SharingLinks extends Component {
         const text = i18n.messages.appSharingText
             .replace(/`/g, monospaceMark)
             .replace(/{addresses}/g, this.getAddresses())
-            .replace(/{distance}/g, asDistance(this.props.formState.pathLength, i18n) + i18n.labels.km)
             .replace(
-                /{fuelPrice}/g,
-                i18n.labels.currency + this.props.formState.gasPrice
+                /{distance}/g,
+                asDistance(this.props.formState.pathLength, i18n) + i18n.labels.km
             )
+            .replace(/{fuelPrice}/g, i18n.labels.currency + this.props.formState.gasPrice)
             .replace(
                 /{vehicleConsumption}/g,
                 this.props.formState.gasConsumption + i18n.labels.kmByLiter
             )
             .replace(/{participants}/g, this.props.formState.participants)
             .replace(/{total}/g, i18n.labels.currency + this.props.formState.result)
-            .replace(
-                /{perPerson}/g,
-                i18n.labels.currency + this.props.formState.pricePerPerson
-            )
+            .replace(/{perPerson}/g, i18n.labels.currency + this.props.formState.pricePerPerson)
             .replace(/{url}/g, process.env.PUBLIC_URL);
 
         return encodeURIComponent(text);

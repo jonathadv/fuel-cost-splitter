@@ -9,11 +9,10 @@ const asNumber = value => {
 const asDistance = (value, i18n) => {
     let strNumber = value.toString();
     if (strNumber.indexOf('.') > -1) {
-        strNumber =  strNumber.replace('.', i18n.math.decimalSeparator);
+        strNumber = strNumber.replace('.', i18n.math.decimalSeparator);
     }
     return strNumber;
 };
-
 
 const asCurrency = (value, i18n) => {
     const strNumber = value.toString();
@@ -28,5 +27,5 @@ module.exports = {
     asNumber,
     asDistance,
     asCurrency,
-    gtZero
-}
+    gtZero,
+};

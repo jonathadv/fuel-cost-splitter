@@ -6,7 +6,7 @@ import Form from './components/Form';
 import Menu from './components/Menu';
 import CalcResult from './components/CalcResult';
 import i18n from './i18n';
-import { asNumber, asCurrency, gtZero } from './numbertools'
+import { asNumber, asCurrency, gtZero } from './numbertools';
 import './App.css';
 
 class App extends Component {
@@ -44,7 +44,12 @@ class App extends Component {
     updateResult = () => {
         const { pathLength, gasConsumption, gasPrice, participants, i18n } = this.state;
 
-        if (!gtZero(pathLength) || !gtZero(gasConsumption) || !gtZero(gasPrice) || !gtZero(participants)){
+        if (
+            !gtZero(pathLength) ||
+            !gtZero(gasConsumption) ||
+            !gtZero(gasPrice) ||
+            !gtZero(participants)
+        ) {
             alert(i18n.messages.fillAllFields);
             return;
         }
