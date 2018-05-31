@@ -65,10 +65,8 @@ class AddressList extends Component {
     };
 
     inputOnblur = e => {
-        const addressList = this.state.addressList;
         const currentItem = e.nativeEvent.target;
-        addressList[currentItem.id].value = currentItem.value;
-        this.setState(addressList);
+        this.setAddress(currentItem.id, currentItem.value);
     };
 
     renderAddresses = () => {
@@ -126,6 +124,8 @@ class AddressList extends Component {
     // https://developers.google.com/maps/documentation/javascript/places-autocomplete
     // This code expects that Google Libraries are already loaded.
     registerInputTextToAutocomplete = () => {
+        const { i18n } = this.props;
+
         this.state.addressList.forEach((input, index) => {
             const autocomplete = new window.google.maps.places.Autocomplete(
                 document.getElementsByClassName('address-input-' + index)[0],
@@ -134,7 +134,11 @@ class AddressList extends Component {
 
             autocomplete.addListener('place_changed', () => {
                 const place = autocomplete.getPlace();
-                this.setAddress(index, place.formatted_address);
+                const address = place.formatted_address ? place.formatted_address : place.name;
+                if (!address) {
+                    alert(i18n.messages.googleApiLoadError);
+                }
+                this.setAddress(index, address);
             });
         });
     };
