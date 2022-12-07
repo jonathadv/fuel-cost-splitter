@@ -20,7 +20,7 @@
     "lint": "eslint src test stories"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^8.29.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.11.0",
