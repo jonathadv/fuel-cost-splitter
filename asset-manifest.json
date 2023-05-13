@@ -1,6 +1,13 @@
 {
-  "main.css": "static/css/main.247b8948.css",
-  "main.css.map": "static/css/main.247b8948.css.map",
-  "main.js": "static/js/main.bdcc613c.js",
-  "main.js.map": "static/js/main.bdcc613c.js.map"
+  "files": {
+    "main.css": "https://fcs.daguerre.com.br/static/css/main.dbaaa16b.css",
+    "main.js": "https://fcs.daguerre.com.br/static/js/main.0645268d.js",
+    "index.html": "https://fcs.daguerre.com.br/index.html",
+    "main.dbaaa16b.css.map": "https://fcs.daguerre.com.br/static/css/main.dbaaa16b.css.map",
+    "main.0645268d.js.map": "https://fcs.daguerre.com.br/static/js/main.0645268d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dbaaa16b.css",
+    "static/js/main.0645268d.js"
+  ]
 }
